@@ -1,0 +1,30 @@
+                 How to use
+ =====================================
+ 
+ === In your config ===
+<pre>
+        'modules'=>array(
+                'login',
+        ),
+
+        'components'=>array(
+                'user'=>array(
+                        'allowAutoLogin'=>true,
+                        'loginUrl'=>array('/login/default/index'),
+                ),
+        ),
+
+</pre>
+                === or you can use
+                        'loginUrl'=>array('login'),
+                ===
+
+=== To create DB table ===
+
+http://yoursite.com/login/default/easyinstall
+
+
+=== For logout you can use ===
+
+array('/login/default/logout')
+

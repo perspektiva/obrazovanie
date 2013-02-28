@@ -1,0 +1,52 @@
+html {
+        overflow-y: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+}
+.toggle-link {
+        cursor: pointer;
+}
+.centered {
+        text-align:center;
+}
+
+.alt {
+        color: #666;
+        font-family: "Warnock Pro", "Goudy Old Style","Palatino","Book Antiqua", Georgia, serif;
+        font-style: italic;
+        font-weight: normal;
+}
+
+.rounded {
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+}
+
+.rounded3 {
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+}
+.rounded8 {
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+}
+
+.rounded10 {
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+}
+
+.text-shadow1 {
+        text-shadow: 1px 1px 1px #666; 
+}
+
+.go_admin {
+        position:absolute;
+}
+label {
+        font-weight:690;
+        color:#003F69;
+}

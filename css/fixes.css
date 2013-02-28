@@ -1,0 +1,48 @@
+/*====== Fixing input fields in grid header and in ckeditor =====*/
+.grid-view input[type="text"], .grid-view select {
+        margin:0;
+        padding-left:0px;
+        padding-right:0px;
+}
+
+table.cke_dialog  input[type='text'] {
+        margin-bottom:0px;
+        font-size:12px;
+        color:black;
+        font:normal normal normal 100% Sans-Serif;
+        font-family:Arial,Helvetica,Tahoma,Verdana,Sans-Serif; 
+
+        -webkit-box-shadow:none;
+        box-shadow:none;
+        -moz-box-shadow:none;
+}
+
+
+
+/*//======= Form Errors =======*/
+span.required {
+    color: red;
+}
+form div.error label:first-child,
+form label.error,
+form span.error
+{
+	color: #C00;
+}
+
+form div.error input,
+form div.error textarea,
+form div.error select,
+form input.error,
+form textarea.error,
+form select.error
+{
+	background: #FEE;
+	border-color: #C00;
+}
+form .errorMessage
+{
+	color: red;
+        /*font-size: 0.9em;*/
+}
+/*//======= End of Form Errors =======*/
