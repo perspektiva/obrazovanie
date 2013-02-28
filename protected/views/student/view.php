@@ -24,14 +24,16 @@
                         'name'=>'sex',
                         'value'=>($model->sex == 1) ? 'Мужской':'Женский',
                 ),
-		'citizenship',
+                array(
+                        'name'=>'citizenship',
+                        'value'=>CountryCode::model()->findByAttributes(array('id'=>$model->citizenship))->ru,
+                ),
 		'passport_number',
 		'passport_expiration',
-		'birth_country',
-                //array(
-                //'name'=>'birth_country',
-                //'value'=>CountryCode::model()->findByPk($model->birth_country)->ru,
-                //),
+                array(
+                        'name'=>'birth_country',
+                        'value'=>CountryCode::model()->findByAttributes(array('id'=>$model->birth_country))->ru,
+                ),
 		'birth_city',
 		'email',
 		'password',

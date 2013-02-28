@@ -47,7 +47,15 @@
                                 )), 'id', 'name')); ?>
                                 <?php echo $form->error($model,'referent_id'); ?>
                         </div>
+                </div>
+                <br>
 
+                <div class='row'>
+                        <div class='span5'>
+                                <?php echo $form->labelEx($model,'status'); ?>
+                                <?php echo $form->dropDownList($model,'status', CHtml::listData(CityCode::model()->findAll(), 'id', 'ru'), array('class'=>'span4')); ?>
+                                <?php echo $form->error($model,'status'); ?>
+                        </div>
                 </div>
         </fieldset>
 
