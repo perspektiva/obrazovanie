@@ -66,6 +66,25 @@ class CityCode extends CActiveRecord
 		));
 	}
 
+        /*
+         * Массив из городов (для dropDownList)
+         */
+        public function getCitiesArray()
+        {
+                return CHtml::listData(CityCode::model()->findAll(), 'id', 'ru');
+        }
+
+        /**
+         * Ищет по id город и возращает его название 
+         * 
+         * @param int $id 
+         * @return string city name
+         */
+        public function getCityValue($id)
+        {
+                return CityCode::model()->findByAttributes(array('id'=>$id))->ru;
+        }
+
 
         /**
         //================= Caching =================

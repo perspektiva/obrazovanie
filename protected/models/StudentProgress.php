@@ -1,15 +1,14 @@
 <?php
 
 /**
- * This is the model class for table "country_code".
+ * This is the model class for table "obr_student_progress".
  *
- * The followings are the available columns in table 'country_code':
+ * The followings are the available columns in table 'obr_student_progress':
  * @property integer $id
- * @property string $code
- * @property string $ru
- * @property string $cz
+ * @property integer $student_id
+ * @property integer $progress_id
  */
-class CountryCode extends CActiveRecord
+class StudentProgress extends CActiveRecord
 {
 	public static function model($className=__CLASS__)
 	{
@@ -18,15 +17,16 @@ class CountryCode extends CActiveRecord
 
 	public function tableName()
 	{
-		return 'country_code';
+		return 'obr_student_progress';
 	}
 
 	public function rules()
 	{
 		return array(
-			array('code, ru, cz', 'required'),
+			array('student_id, progress_id', 'required'),
+			array('student_id, progress_id', 'numerical', 'integerOnly'=>true),
 
-			array('id, code, ru, cz', 'safe', 'on'=>'search'),
+			array('id, student_id, progress_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -40,9 +40,8 @@ class CountryCode extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'code' => 'Code',
-			'ru' => 'Ru',
-			'cz' => 'Cz',
+			'student_id' => 'Student',
+			'progress_id' => 'Progress',
 		);
 	}
 
@@ -51,9 +50,8 @@ class CountryCode extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('code',$this->code,true);
-		$criteria->compare('ru',$this->ru,true);
-		$criteria->compare('cz',$this->cz,true);
+		$criteria->compare('student_id',$this->student_id);
+		$criteria->compare('progress_id',$this->progress_id);
 
 		return new CActiveDataProvider($this, array(
                 'criteria'=>$criteria,
@@ -65,14 +63,6 @@ class CountryCode extends CActiveRecord
                 ),
 		));
 	}
-
-        /*
-         * Массив из стран (для dropDownList)
-         */
-        public function getCountriesArray()
-        {
-                return CHtml::listData(CountryCode::model()->findAll(), 'id', 'ru');
-        }
 
 
         /**

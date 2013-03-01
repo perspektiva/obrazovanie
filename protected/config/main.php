@@ -21,6 +21,11 @@ return array(
 	),
 
 	'components'=>array(
+                'clientScript'=>array(
+                        'scriptMap'=>array(
+                                'jquery.js'=>false,
+                        ),
+                ),
                 'cache'=>array(
                         'class'=>'system.caching.CFileCache',
                 ),
@@ -49,7 +54,7 @@ return array(
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
-                        'schemaCachingDuration'=>3600*24,
+                        //'schemaCachingDuration'=>3600*24,
 		),
 		'errorHandler'=>array(
 			'errorAction'=>'site/error',

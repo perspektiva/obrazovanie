@@ -7,6 +7,57 @@ class StudentController extends DefaultController
         public $createRedirect;
         public $updateRedirect;
 
+        public function actions()
+        {
+                $path = 'ext.actions.StudentAction';
+
+                return array(
+                        'progress'=>array(
+                                'class'=>$path,
+                                'actionModel'=>'Progress',
+                        ),
+                        // вкладка "Виза"
+                        'visa'=>array(
+                                'class'=>$path,
+                                'actionModel'=>'Visa',
+                        ),
+                        // редактирование вкладки "Виза"
+                        'updateVisa'=>array(
+                                'class'=>$path,
+                                'actionModel'=>'Visa',
+                                'isUpdate'=>true,
+                        ),
+                        // вкладка "Образование"
+                        'education'=>array(
+                                'class'=>$path,
+                                'actionModel'=>'Education',
+                        ),
+                        // редактирование вкладки "Образование"
+                        'updateEducation'=>array(
+                                'class'=>$path,
+                                'actionModel'=>'Education',
+                                'isUpdate'=>true,
+                        ),
+                        // вкладка "Приезд"
+                        'arrival'=>array(
+                                'class'=>$path,
+                                'actionModel'=>'Arrival',
+                        ),
+                        // редактирование вкладки "Приезд"
+                        'updateArrival'=>array(
+                                'class'=>$path,
+                                'actionModel'=>'Arrival',
+                                'isUpdate'=>true,
+                        ),
+                );
+        }
+
+        public function filters()
+        {
+                return array(
+                        'paramsForLayout -admin, create, delete',
+                );
+        }
 
         public function actionIndex()
         {
@@ -43,13 +94,6 @@ class StudentController extends DefaultController
                 parent::actionCreate();
         }
 
-        public function actionUpdate($id)
-        {
-                $student = $this->loadModel($id);
-                $this->paramsForLayout($student);
-
-                parent::actionUpdate($id);
-        }
 
         /**
          * Вкладка "Инфо"
@@ -57,26 +101,10 @@ class StudentController extends DefaultController
         public function actionShortInfo($id)
         {
                 $student = $this->loadModel($id);
-                $this->paramsForLayout($student);
 
                 $this->render('shortInfo', array(
                         'student'=>$student,
                 ));
-        }
-
-
-        /**
-         * Вкладка "Анкета" оно же 'View'
-         */
-        public function actionView($id)
-        {
-                $student = $this->loadModel($id);
-                $this->paramsForLayout($student);
-
-                $this->render('view', array(
-                        'model'=>$student,
-                ));
-                
         }
 
 
@@ -86,7 +114,6 @@ class StudentController extends DefaultController
         public function actionDogovor($id)
         {
                 $student = $this->loadModel($id);
-                $this->paramsForLayout($student);
 
                 $this->render('dogovor', array(
                         'student'=>$student,
@@ -101,7 +128,6 @@ class StudentController extends DefaultController
         public function actionPost($id)
         {
                 $student = $this->loadModel($id);
-                $this->paramsForLayout($student);
 
                 $this->render('post', array(
                         'student'=>$student,
@@ -116,7 +142,6 @@ class StudentController extends DefaultController
         public function actionTranslations($id)
         {
                 $student = $this->loadModel($id);
-                $this->paramsForLayout($student);
 
                 $this->render('translations', array(
                         'student'=>$student,
@@ -131,7 +156,6 @@ class StudentController extends DefaultController
         public function actionDoverennosti($id)
         {
                 $student = $this->loadModel($id);
-                $this->paramsForLayout($student);
 
                 $this->render('doverennosti', array(
                         'student'=>$student,
@@ -147,11 +171,15 @@ class StudentController extends DefaultController
          * @param model Student
          * @return void
          */
-        public function paramsForLayout($student)
+        public function filterParamsForLayout($filterChain)
         {
+                $student = $this->loadModel((int)$_GET['id']);
+
                 $this->student_name = $student->name_ru;
                 $this->student_surname = $student->surname_ru;
                 $this->student_id = $student->id;
                 $this->student_status = Student::getStatusValue($student->status);
+
+                $filterChain->run();
         }
 }

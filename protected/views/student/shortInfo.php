@@ -25,7 +25,7 @@
                                 </tr>
                                 <tr>
                                         <th>Полная сдача документов</th>
-                                        <td><?php echo $student->id; ?></td>
+                                        <td><?php echo ($student->ready == 1) ? 'Да':'Нет'; ?></td>
                                 </tr>
                         </table>
 

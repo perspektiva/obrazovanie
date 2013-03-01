@@ -31,7 +31,7 @@
                 'options'=>array(
                         'changeYear'=>true,
                         'changeMonth'=>true,
-                        'dateFormat'=>'dd-mm-yy',
+                        'dateFormat'=>'dd.mm.yy',
                         'showAnim'=>'fold',
                         'yearRange'=>'2000:2030',
                         'firstDay'=>1,

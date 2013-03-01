@@ -14,13 +14,25 @@ class Student extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('status, name_ru, name_en, surname_ru, surname_en, virgin_surname_ru, virgin_surname_en, otchestvo, sex, citizenship, passport_number, passport_expiration, birth_country, birth_city, email, phone, phone_cz, address, address_cz, father_name_ru, father_name_en, father_surname_ru, father_surname_en, father_email, mother_name_ru, mother_name_en, mother_surname_ru, mother_surname_en, mother_virgin_surname_ru, mother_virgin_surname_en, mother_email, courses_ku_id, manager_id, referent_id', 'required'),
+                        array('status, name_ru, name_en, surname_ru, surname_en, otchestvo, sex, citizenship, passport_number,
+                        passport_expiration, birth_country, birth_city, email, phone, phone_cz, address, address_cz, father_name_ru, 
+                        father_name_en, father_surname_ru, father_surname_en, father_email, mother_name_ru, mother_name_en, mother_surname_ru, 
+                        mother_surname_en, mother_email, courses_ku_id, manager_id, referent_id, birthday', 
+                        'required'),
 
-			array('status, sex, citizenship, birth_country, phone_cz, courses_ku_id, manager_id, referent_id', 'numerical', 'integerOnly'=>true),
+                        array('status, sex, citizenship, birth_country, phone_cz, courses_ku_id, manager_id, referent_id', 
+                        'numerical', 'integerOnly'=>true),
 
-			array('name_ru, name_en, father_name_ru, father_name_en, mother_name_ru, mother_name_en', 'length', 'max'=>50),
-			array('surname_ru, surname_en, virgin_surname_ru, virgin_surname_en, otchestvo, father_surname_ru, father_surname_en, mother_surname_ru, mother_surname_en, mother_virgin_surname_ru, mother_virgin_surname_en', 'length', 'max'=>80),
-			array('passport_number, phone, start_date', 'length', 'max'=>30),
+                        array('name_ru, name_en, father_name_ru, father_name_en, mother_name_ru, mother_name_en', 
+                        'length', 'max'=>50),
+
+                        array('surname_ru, surname_en, virgin_surname_ru, virgin_surname_en, otchestvo, father_surname_ru, father_surname_en, 
+                        mother_surname_ru, mother_surname_en, mother_virgin_surname_ru, mother_virgin_surname_en', 
+                        'length', 'max'=>80),
+
+                        array('passport_number, phone, start_date', 
+                        'length', 'max'=>30),
+
 			array('passport_expiration', 'length', 'max'=>10),
 			array('email, birth_city, father_email, mother_email', 'length', 'max'=>100),
 			array('address, address_cz', 'length', 'max'=>250),
@@ -34,6 +46,10 @@ class Student extends CActiveRecord
 	public function relations()
 	{
 		return array(
+                        'progress'=>array(self::MANY_MANY, 'Progress', 'StudentProgress(student_id, progress_id)'),
+                        'arrival'=>array(self::HAS_ONE, 'Arrival', 'student_id'),
+                        'visa'=>array(self::HAS_ONE, 'Visa', 'student_id'),
+                        'education'=>array(self::HAS_ONE, 'Education', 'student_id'),
                         'manager'=>array(self::BELONGS_TO, 'Users', 'manager_id'),
                         'referent'=>array(self::BELONGS_TO, 'Users', 'referent_id'),
                         'birth_country'=>array(self::BELONGS_TO, 'CountryCode', 'birth_country'),
@@ -47,6 +63,7 @@ class Student extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'status' => 'Статус',
+			'birthday' => 'День рождения',
 			'name_ru' => 'Имя (кириллицей)',
 			'name_en' => 'Имя (латиницей)',
 			'surname_en' => 'Фамилия (латиницей)',
@@ -57,14 +74,14 @@ class Student extends CActiveRecord
 			'sex' => 'Пол',
 			'citizenship' => 'Гражданство',
 			'passport_number' => 'Номер паспорта',
-			'passport_expiration' => 'Passport Expiration',
+			'passport_expiration' => 'Паспорт истекает',
 			'birth_country' => 'Страна рождения',
 			'birth_city' => 'Город рождения',
 			'email' => 'Email',
 			'password' => 'Password',
 			'phone' => 'Телефон (основной)',
 			'phone_cz' => 'Телефон (чешский)',
-			'address' => 'Address',
+			'address' => 'Постоянный адрес',
 			'address_cz' => 'Адрес в Чехии',
 			'father_name_ru' => 'Имя отца (кириллицей)',
 			'father_name_en' => 'Имя отца (латиницей)',
@@ -207,11 +224,25 @@ class Student extends CActiveRecord
                 $arrayHtml = array(
                         1 => "<span class='status-potential'>Потенциальный</span>",
                         2 => "<span class='status-actual'>Актуальный</span>",
-                        3 => "<span class='status-serverd'>Обслуженный</span>",
+                        3 => "<span class='status-served'>Обслуженный</span>",
                         4 => "<span class='status-rejected'>Отказался</span>",
                 );
 
                 return $html ? $arrayHtml : $array;
+        }
+
+
+        // =====================================================
+
+        public function beforeSave()
+        {
+                if (! $this->start_date)
+                        $this->start_date = date('d.m.Y');
+
+                if (! $this->password)
+                        $this->password = substr( md5(time()), -6 );
+
+                return parent::beforeSave();
         }
 
 }

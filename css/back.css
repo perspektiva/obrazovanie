@@ -34,8 +34,21 @@ table th {
 }
 
 /*// =========== Index ===========*/
+.name-title {
+        color:navy;
+        font-size:20px;
+}
 .status-potential {
+        color:orange;
+}
+.status-actual {
+        color:magenta;
+}
+.status-served {
         color:green;
+}
+.status-rejected {
+        color:red;
 }
 fieldset.form {
         padding:15px;

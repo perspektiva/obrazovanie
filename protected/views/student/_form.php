@@ -50,22 +50,38 @@
                 </div>
                 <br>
 
-                <div class='row'>
-                        <div class='span5'>
-                                <?php echo $form->labelEx($model,'status'); ?>
-                                <?php echo $form->dropDownList($model,'status', CHtml::listData(CityCode::model()->findAll(), 'id', 'ru'), array('class'=>'span4')); ?>
-                                <?php echo $form->error($model,'status'); ?>
-                        </div>
-                </div>
         </fieldset>
 
         <br><br>
         <fieldset class='form'><legend>Личная информация</legend>
                 <div class='row'>
-                        <div class='span5'>
+                        <div class='span3'>
                                 <?php echo $form->labelEx($model,'sex'); ?>
-                                <?php echo $form->dropDownList($model,'sex', array(1=>'Мужской', 2=>'Женский')); ?>
+                                <?php echo $form->dropDownList($model,'sex', array(1=>'Мужской', 2=>'Женский'), array('class'=>'span3')); ?>
                                 <?php echo $form->error($model,'sex'); ?>
+                        </div>
+
+                        <div class='span3'>
+                                <?php echo $form->labelEx($model, 'birthday') ?>
+                                <?php
+                                $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+                                        'model'=>$model,
+                                        'attribute'=>'birthday',
+                                        'options'=>array(
+                                                'changeYear'=>true,
+                                                'changeMonth'=>true,
+                                                'dateFormat'=>'dd.mm.yy',
+                                                'showAnim'=>'fold',
+                                                'yearRange'=>'1970:2030',
+                                                'firstDay'=>1,
+                                        ),
+                                        'htmlOptions'=>array(
+                                                'maxlength'=>20,
+                                                'class'=>'span2',
+                                        ),
+                                )); 
+                                ?>
+                                <?php echo $form->error($model, 'birthday') ?>
                         </div>
                 </div>
                 <br>
@@ -150,7 +166,24 @@
 
                         <div class='span5'>
                                 <?php echo $form->labelEx($model,'passport_expiration'); ?>
-                                <?php echo $form->textField($model,'passport_expiration',array('size'=>10,'maxlength'=>10)); ?>
+                                <?php
+                                $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+                                        'model'=>$model,
+                                        'attribute'=>'passport_expiration',
+                                        'options'=>array(
+                                                'changeYear'=>true,
+                                                'changeMonth'=>true,
+                                                'dateFormat'=>'dd.mm.yy',
+                                                'showAnim'=>'fold',
+                                                'yearRange'=>'2000:2030',
+                                                'firstDay'=>1,
+                                        ),
+                                        'htmlOptions'=>array(
+                                                'maxlength'=>20,
+                                                'class'=>'span2',
+                                        ),
+                                )); 
+                                ?>
                                 <?php echo $form->error($model,'passport_expiration'); ?>
                         </div>
                 </div>

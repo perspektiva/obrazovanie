@@ -1,4 +1,6 @@
-<h2>Анкета</h2>
+<div class='tab-title'>
+        Анкета
+</div>
 
 <?php echo CHtml::link('Редактировать', array('/student/update/', 'id'=>$model->id)); ?>
 <br><br>
@@ -14,12 +16,12 @@
                         'type'=>'raw',
                 ),
 		'name_ru',
-		'name_en',
 		'surname_ru',
-		'surname_en',
-		'virgin_surname_ru',
-		'virgin_surname_en',
 		'otchestvo',
+		'virgin_surname_ru',
+		'name_en',
+		'surname_en',
+		'virgin_surname_en',
                 array(
                         'name'=>'sex',
                         'value'=>($model->sex == 1) ? 'Мужской':'Женский',
@@ -30,13 +32,13 @@
                 ),
 		'passport_number',
 		'passport_expiration',
+		'birthday',
                 array(
                         'name'=>'birth_country',
                         'value'=>CountryCode::model()->findByAttributes(array('id'=>$model->birth_country))->ru,
                 ),
 		'birth_city',
 		'email',
-		'password',
 		'phone',
 		'phone_cz',
 		'address',
