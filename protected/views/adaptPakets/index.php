@@ -11,7 +11,7 @@
         <?php foreach($pakets as $paket): ?>
         <tr>
                 <th>
-                        <h3>
+                        <h4>
                                 <?php echo CHtml::link(
                                         CHtml::image(Yii::app()->baseUrl.'/css/images/edit_small.png'), 
                                         array('/adaptPakets/update/'.$paket->id)
@@ -22,11 +22,11 @@
                                         array('/adaptPakets/delete/'.$paket->id),
                                         array('confirm'=>'Точно удалить ?')
                                 ); ?> 
-                        </h3>
+                        </h4>
                 </th>
 
                 <td>
-                        <h3 class='centered'><?php echo CHtml::link('Редактировать элементы', array('/adaptItems/admin/', 'paket_id'=>$paket->id)); ?></h3>
+                        <h4 class='centered'><?php echo CHtml::link('Редактировать элементы', array('/adaptItems/admin/', 'paket_id'=>$paket->id)); ?></h4>
                 </td>
         </tr>
         <?php endforeach ?>
