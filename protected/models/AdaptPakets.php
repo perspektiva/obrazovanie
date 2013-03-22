@@ -62,6 +62,16 @@ class AdaptPakets extends CActiveRecord
 		));
 	}
 
+        /**
+         * Удаляем связанные итемы 
+         */
+        protected function afterDelete()
+        {
+                foreach ($this->items as $item) 
+                        $item->delete();
+                parent::afterDelete();
+        }
+
 
         /**
         //================= Caching =================

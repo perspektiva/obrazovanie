@@ -1,5 +1,9 @@
 <div class='tab-title'>
-        Адаптационная программа - <?php echo $student->adapt_paket->name; ?>
+        <?php if(isset($student->adapt_paket->name)): ?>
+                Адаптационная программа - <?php echo $student->adapt_paket->name; ?>
+        <?php else: ?>
+                Нет адаптационной программы
+        <?php endif ?>
 </div>
 
 <table class='table table-bordered table-condensed table-hover'>

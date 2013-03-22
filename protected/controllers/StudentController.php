@@ -180,7 +180,7 @@ class StudentController extends DefaultController
         public function actionAdapt($id)
         {
                 $student = $this->loadModel($id);
-                $items = $student->adapt_paket->items;
+                $items = isset($student->adapt_paket->items) ? $student->adapt_paket->items : array();
 
                 $this->render('tabs/adapt', array(
                         'items'=>$items,

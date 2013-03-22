@@ -59,15 +59,15 @@
 		'address_cz',
                 array(
                         'name'=>'courses_ku_id',
-                        'value'=>$model->courses_ku->name." (".$model->courses_ku->duration_from." - ".$model->courses_ku->duration_to.")",
+                        'value'=>(isset($model->courses_ku->name)) ? $model->courses_ku->name." (".$model->courses_ku->duration_from." - ".$model->courses_ku->duration_to.")" : '',
                 ),
                 array(
                         'name'=>'need_dorm',
-                        'value'=>($model->need_dorm) ? $model->dorm->name : "Не требуется",
+                        'value'=>($model->need_dorm AND isset($model->dorm->name)) ? $model->dorm->name : "Не требуется",
                 ),
                 array(
                         'name'=>'adapt_paket_id',
-                        'value'=>$model->adapt_paket->name,
+                        'value'=>(isset($model->adapt_paket->name)) ? $model->adapt_paket->name : '',
                 ),
                 array(
                         'name'=>'manager_id',

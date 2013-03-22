@@ -47,6 +47,7 @@
                                 'htmlOptions'=>array(
                                         'class'=>'nav nav-pills pull-right span3'
                                 ),
+                                'itemCssClass'=>'pull-right',
                                 'encodeLabel'=>false
                         ));
                         ?>

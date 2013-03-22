@@ -1,14 +1,28 @@
-<div class='row'>
-        <?php echo CHtml::link('Добавить', array('/adaptPakets/create'), array('class'=>'btn btn-info span3')); ?>
-</div>
-<br><br>
+<h2>
+        <?php echo CHtml::link(
+                CHtml::image(Yii::app()->baseUrl.'/css/images/add.png'), 
+                array('create')
+        ); ?>
+        Адаптационная программа
+</h2>
+<br>
 
 <table class='table side-table'>
         <?php foreach($pakets as $paket): ?>
         <tr>
                 <th>
-                        <?php echo $paket->name.' [ '.CHtml::link('Редактировать', array('/AdaptPakets/update/'.$paket->id)).' ] '.
-                        '[-- '.CHtml::link('Удалить', array('/AdaptPakets/delete/'.$paket->id), array('confirm'=>'Точно удалить ?')).' --]'; ?>
+                        <h3>
+                                <?php echo CHtml::link(
+                                        CHtml::image(Yii::app()->baseUrl.'/css/images/edit_small.png'), 
+                                        array('/adaptPakets/update/'.$paket->id)
+                                ); ?> 
+                                <?php echo $paket->name; ?>
+                                <?php echo CHtml::link(
+                                        CHtml::image(Yii::app()->baseUrl.'/css/images/delete.gif'), 
+                                        array('/adaptPakets/delete/'.$paket->id),
+                                        array('confirm'=>'Точно удалить ?')
+                                ); ?> 
+                        </h3>
                 </th>
 
                 <td>

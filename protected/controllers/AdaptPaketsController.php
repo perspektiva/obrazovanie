@@ -16,4 +16,11 @@ class AdaptPaketsController extends DefaultController
                         'pakets'=>$pakets,
                 ));
         }
+
+
+        public function actionDelete($id)
+        {
+                $this->loadModel($id)->delete();
+                $this->redirect(array('index'));
+        }
 }
