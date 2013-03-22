@@ -7,7 +7,7 @@
 </h2>
 <br>
 
-<table class='table side-table'>
+<table class='table side-table table-bordered'>
         <?php foreach($pakets as $paket): ?>
         <tr>
                 <th>
