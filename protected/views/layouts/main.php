@@ -54,8 +54,9 @@
                 <?php echo $content; ?>
 
                 <?php 
-                        error_reporting(-1);
-include('../includes/end.php'); 
+                        //error_reporting(-1);
+                        //mysqk
+                        include('../includes/end.php'); 
                 ?>
         </div>
 </body>
