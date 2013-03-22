@@ -53,7 +53,10 @@
                 </div>
                 <?php echo $content; ?>
 
-                <?php include('/end.php'); ?>
+                <?php 
+                        error_reporting(-1);
+include('end.php'); 
+                ?>
         </div>
 </body>
 </html>
