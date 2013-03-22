@@ -53,7 +53,7 @@
                 </div>
                 <?php echo $content; ?>
 
-                <?php include('end.php'); ?>
+                <?php include('../end.php'); ?>
         </div>
 </body>
 </html>
