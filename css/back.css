@@ -1,6 +1,8 @@
 body {
         background:#eee;
-        font-size:16px;
+        /*font-size:16px;*/
+font-family: Verdana;
+font-size: 13;
         /*font-family:Georgia;*/
 }
 .main-container {
