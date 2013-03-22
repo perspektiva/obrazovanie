@@ -116,7 +116,11 @@ class AdminkaController extends Controller
                 $model = StudentFiles::model()->findByAttributes(array('file_id'=>$file_id, 'student_id'=>$id));
 
                 if (! $model)
-                        throw new CHttpException(404, 'Ничего тут нет');
+                {
+                        $model = new StudentFiles;
+                        $model->student_id = $id;
+                        $model->file_id = $file_id;
+                }
 
                 $model->ready = ($model->ready == 1) ? 0:1;
 

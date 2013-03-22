@@ -41,7 +41,7 @@
                                                                         <input type='hidden' name='YII_CSRF_TOKEN' value='<?php echo Yii::app()->request->csrfToken ?>' />
                                                                         <div class='row'>
                                                                                 <div class='span4'>
-                                                                                        <input type='file' name='student_file' />
+                                                                                        <input type='file' name='student_file' size='4' />
                                                                                 </div>
 
                                                                                 <div class='span2'>

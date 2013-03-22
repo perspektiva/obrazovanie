@@ -1,9 +1,7 @@
 body {
         background:#eee;
-        /*font-size:16px;*/
-font-family: Verdana;
-font-size: 13;
-        /*font-family:Georgia;*/
+        font-size:13px;
+        font-family:Verdana;
 }
 .main-container {
         padding:20px;
