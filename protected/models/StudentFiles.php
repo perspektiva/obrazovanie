@@ -99,12 +99,8 @@ class StudentFiles extends CActiveRecord
          */
         public static function isStudentHasFile($student, $file_id)
         {
-                foreach ($student->files as $file) 
-                {
-                        if ($file->id == $file_id)
-                                return self::model()->findByPk((int)$file_id);
-                }
-                return false;
+                $model = self::model()->findByAttributes(array('file_id'=>$file_id, 'student_id'=>$student->id));
+                return $model ? $model : false;
         }
 
 
