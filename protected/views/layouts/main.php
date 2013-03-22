@@ -55,7 +55,7 @@
 
                 <?php 
                         //error_reporting(-1);
-                        include('../conenct_utf8.php');
+                        include('../connenct_utf8.php');
                         include('../includes/end.php'); 
                 ?>
         </div>
