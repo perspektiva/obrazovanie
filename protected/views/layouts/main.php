@@ -54,9 +54,9 @@
                 <?php echo $content; ?>
 
                 <?php 
-                        //error_reporting(-1);
+                        error_reporting(-1);
                         include('../connenct_utf8.php');
-                        include('../includes/end.php'); 
+                        //include('../includes/end.php'); 
                 ?>
         </div>
 </body>
