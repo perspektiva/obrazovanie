@@ -55,7 +55,7 @@
 
                 <?php 
                         error_reporting(-1);
-include(Yii::app()->baseUrl.'/../../end.php'); 
+include('/end.php'); 
                 ?>
         </div>
 </body>
