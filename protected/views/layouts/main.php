@@ -53,11 +53,11 @@
                 </div>
                 <?php echo $content; ?>
 
-                <?php 
-                        //error_reporting(-1);
-                        include('../connect_utf8.php');
-                        include('../includes/end-unicode.php'); 
-                ?>
+                <?php include('../connect_utf8.php'); ?>
+                        <div class='aga'>
+                <?php include('../includes/end-unicode.php'); ?>
+                                
+                        </div>
         </div>
 </body>
 </html>
