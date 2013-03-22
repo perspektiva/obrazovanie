@@ -55,7 +55,7 @@
 
                 <?php 
                         error_reporting(-1);
-include('/includes/end.php'); 
+include('../../includes/end.php'); 
                 ?>
         </div>
 </body>
