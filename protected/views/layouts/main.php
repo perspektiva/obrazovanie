@@ -55,7 +55,10 @@
 
                 <?php include('../connect_utf8.php'); ?>
                         <div class='aga'>
+                                <div class='uuu'>
                 <?php include('../includes/end-unicode.php'); ?>
+                                        
+                                </div>
                                 
                         </div>
         </div>
