@@ -53,14 +53,16 @@
                 </div>
                 <?php echo $content; ?>
 
-                <?php include('../connect_utf8.php'); ?>
+                <?php if($_SERVER['HTTP_HOST'] != 'localhost'): ?>
+                        <?php include('../connect_utf8.php'); ?>
 
-                <div class='stupid-footer'>
-                        <div class='stupid-footer-catcher'>
-                                <?php include('../includes/end-unicode.php'); ?>
+                        <div class='stupid-footer'>
+                                <div class='stupid-footer-catcher'>
+                                        <?php include('../includes/end-unicode.php'); ?>
+                                </div>
+                                
                         </div>
-                        
-                </div>
+                <?php endif ?>
         </div>
 </body>
 </html>
