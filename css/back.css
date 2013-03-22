@@ -101,3 +101,21 @@ hr.huge-separator {
         background:#aaa;
 }
 /*// ----------- Табы -----------*/
+
+
+/*// =========== footer ===========*/
+.footer-end-block{
+        position:relative;
+        top:0px;
+        width:960px;
+        height:53px;
+
+        background-image:url('/images/footer.png');
+        text-align:left;
+        padding:5px 20px;
+        margin: 0px;
+        border:none; 
+        color:white;
+        font-size:10px;
+}
+
