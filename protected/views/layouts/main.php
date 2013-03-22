@@ -54,13 +54,13 @@
                 <?php echo $content; ?>
 
                 <?php include('../connect_utf8.php'); ?>
-                        <div class='aga'>
-                                <div class='uuu'>
-                <?php include('../includes/end-unicode.php'); ?>
-                                        
-                                </div>
-                                
+
+                <div class='stupid-footer'>
+                        <div class='stupid-footer-catcher'>
+                                <?php include('../includes/end-unicode.php'); ?>
                         </div>
+                        
+                </div>
         </div>
 </body>
 </html>

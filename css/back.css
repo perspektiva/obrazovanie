@@ -104,11 +104,13 @@ hr.huge-separator {
 
 
 /*// =========== footer ===========*/
+.stupid-footer {
+        width:1230px;
+        margin-left:-20px;
+        margin-bottom:-20px;
+}
 .footer-end-block{
-        position:relative;
-        top:0px;
-        width:960px;
-        height:53px;
+        /*height:53px;*/
 
         background-image:url('/images/footer.png');
         text-align:left;
