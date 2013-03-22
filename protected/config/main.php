@@ -49,7 +49,7 @@ return array(
 			),
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=zl',
+			'connectionString' => 'mysql:host=localhost;dbname=study',
 			'emulatePrepare' => true,
 			'username' => 'zl',
 			'password' => 'gh16Hau7',
