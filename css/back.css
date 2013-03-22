@@ -110,7 +110,7 @@ hr.huge-separator {
         margin-bottom:-20px;
 }
 .footer-end-block{
-        /*height:53px;*/
+        line-height:15px;
 
         background-image:url('/images/footer.png');
         text-align:left;
