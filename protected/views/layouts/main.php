@@ -17,12 +17,13 @@
 </head>
 <body>
         <div class='container main-container'>
-        <div class='banner'>
-                <?php echo CHtml::link(
-                        CHtml::image(Yii::app()->baseUrl.'/css/images/logo.png','', array('class'=>'banner-logo')),
-                        'https://bd.po4ta.cz/index.php'
-                ); ?>
-        </div>
+                <div class='banner'>
+                        <?php echo CHtml::link(
+                                CHtml::image(Yii::app()->baseUrl.'/css/images/logo.png','', array('class'=>'banner-logo')),
+                                'https://bd.po4ta.cz/index.php'
+                        ); ?>
+                </div>
+
                 <div class='row'>
                         <?php
                         $this->widget('zii.widgets.CMenu',array(
@@ -51,6 +52,8 @@
                         ?>
                 </div>
                 <?php echo $content; ?>
+
+                <?php include('end.php'); ?>
         </div>
 </body>
 </html>
