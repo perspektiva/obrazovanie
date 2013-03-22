@@ -1,10 +1,11 @@
 <div class='tab-title'>
+        <?php echo CHtml::link(
+                CHtml::image(Yii::app()->baseUrl.'/css/images/edit_big.png'), 
+                array('/student/updateArrival/', 'id'=>$model->student_id)
+        ); ?>
         Приезд студента
 </div>
 
-<?php echo CHtml::link('Редактировать', array('/student/updateArrival/', 'id'=>$model->student_id)); ?>
-
-<br><br>
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
@@ -22,5 +23,5 @@
                         'type'=>'html',
                 ),
 	),
-        'htmlOptions'=>array('class'=>'table side-table table-hover'),
+        'htmlOptions'=>array('class'=>'table side-table table-hover table-bordered'),
 )); ?>

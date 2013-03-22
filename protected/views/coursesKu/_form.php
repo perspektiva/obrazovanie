@@ -19,9 +19,53 @@
         <?php echo $form->textField($model,'price',array('class'=>'span3','maxlength'=>20)); ?>
         <?php echo $form->error($model,'price'); ?>
 
-        <?php echo $form->labelEx($model,'duration'); ?>
-        <?php echo $form->textField($model,'duration',array('class'=>'span2','maxlength'=>20)); ?>
-        <?php echo $form->error($model,'duration'); ?>
+        <div class='row'>
+                <div class='span2'>
+                        <?php echo $form->labelEx($model,'duration_from'); ?>
+                        <?php
+                        $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+                                'model'=>$model,
+                                'attribute'=>'duration_from',
+                                'options'=>array(
+                                        'changeYear'=>true,
+                                        'changeMonth'=>true,
+                                        'dateFormat'=>'dd.mm.yy',
+                                        'showAnim'=>'fold',
+                                        'yearRange'=>'2000:2030',
+                                        'firstDay'=>1,
+                                ),
+                                'htmlOptions'=>array(
+                                        'maxlength'=>20,
+                                        'class'=>'span2',
+                                ),
+                        )); 
+                        ?>
+                        <?php echo $form->error($model,'duration_from'); ?>
+                </div>
+
+                <div class='span2'>
+                        <?php echo $form->labelEx($model,'duration_to'); ?>
+                        <?php
+                        $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+                                'model'=>$model,
+                                'attribute'=>'duration_to',
+                                'options'=>array(
+                                        'changeYear'=>true,
+                                        'changeMonth'=>true,
+                                        'dateFormat'=>'dd.mm.yy',
+                                        'showAnim'=>'fold',
+                                        'yearRange'=>'2000:2030',
+                                        'firstDay'=>1,
+                                ),
+                                'htmlOptions'=>array(
+                                        'maxlength'=>20,
+                                        'class'=>'span2',
+                                ),
+                        )); 
+                        ?>
+                        <?php echo $form->error($model,'duration_to'); ?>
+                </div>
+        </div>
 
         <?php echo $form->labelEx($model,'srok_podachi'); ?>
         <?php

@@ -14,13 +14,11 @@ class Student extends CActiveRecord
 	public function rules()
 	{
 		return array(
-                        array('status, name_ru, name_en, surname_ru, surname_en, otchestvo, sex, citizenship, passport_number,
-                        passport_expiration, birth_country, birth_city, email, phone, phone_cz, address, address_cz, father_name_ru, 
-                        father_name_en, father_surname_ru, father_surname_en, father_email, mother_name_ru, mother_name_en, mother_surname_ru, 
-                        mother_surname_en, mother_email, courses_ku_id, manager_id, referent_id, birthday', 
+                        array('status, apostil, arrived, study_year, name_ru, name_en, surname_ru, surname_en, otchestvo, sex, citizenship, passport_number,
+                        passport_expiration, birth_country, birth_city, email, phone, phone_cz, address, address_cz, courses_ku_id, adapt_paket_id, manager_id, referent_id, birthday', 
                         'required'),
 
-                        array('status, sex, citizenship, birth_country, phone_cz, courses_ku_id, manager_id, referent_id', 
+                        array('status, arrived, sex, citizenship, birth_country, phone_cz, courses_ku_id, adapt_paket_id, need_dorm, dorm_id, manager_id, referent_id', 
                         'numerical', 'integerOnly'=>true),
 
                         array('name_ru, name_en, father_name_ru, father_name_en, mother_name_ru, mother_name_en', 
@@ -33,7 +31,7 @@ class Student extends CActiveRecord
                         array('passport_number, phone, start_date', 
                         'length', 'max'=>30),
 
-			array('passport_expiration', 'length', 'max'=>10),
+			array('passport_expiration, study_year', 'length', 'max'=>10),
 			array('email, birth_city, father_email, mother_email', 'length', 'max'=>100),
 			array('address, address_cz', 'length', 'max'=>250),
 
@@ -46,15 +44,22 @@ class Student extends CActiveRecord
 	public function relations()
 	{
 		return array(
-                        'progress'=>array(self::MANY_MANY, 'Progress', 'StudentProgress(student_id, progress_id)'),
+                        'files'=>array(self::MANY_MANY, 'Files', 'obr_student_files(student_id, file_id)'),
+                        'post'=>array(self::HAS_MANY, 'Post', 'student_id'),
+                        'tests'=>array(self::HAS_MANY, 'Tests', 'student_id'),
+                        'missing_subjects'=>array(self::HAS_MANY, 'MissingSubjects', 'student_id'),
+
                         'arrival'=>array(self::HAS_ONE, 'Arrival', 'student_id'),
                         'visa'=>array(self::HAS_ONE, 'Visa', 'student_id'),
                         'education'=>array(self::HAS_ONE, 'Education', 'student_id'),
+
+                        'adapt_paket'=>array(self::BELONGS_TO, 'AdaptPakets', 'adapt_paket_id'),
                         'manager'=>array(self::BELONGS_TO, 'Users', 'manager_id'),
                         'referent'=>array(self::BELONGS_TO, 'Users', 'referent_id'),
                         'birth_country'=>array(self::BELONGS_TO, 'CountryCode', 'birth_country'),
                         'birth_city'=>array(self::BELONGS_TO, 'CityCode', 'birth_city'),
                         'courses_ku'=>array(self::BELONGS_TO, 'CoursesKu', 'courses_ku_id'),
+                        'dorm'=>array(self::BELONGS_TO, 'Dorm', 'dorm_id'),
 		);
 	}
 
@@ -63,6 +68,7 @@ class Student extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'status' => 'Статус',
+			'arrived' => 'Приехал(а)',
 			'birthday' => 'День рождения',
 			'name_ru' => 'Имя (кириллицей)',
 			'name_en' => 'Имя (латиницей)',
@@ -76,12 +82,13 @@ class Student extends CActiveRecord
 			'passport_number' => 'Номер паспорта',
 			'passport_expiration' => 'Паспорт истекает',
 			'birth_country' => 'Страна рождения',
+			'apostil' => 'Нужна апостилизация',
 			'birth_city' => 'Город рождения',
 			'email' => 'Email',
 			'password' => 'Password',
 			'phone' => 'Телефон (основной)',
 			'phone_cz' => 'Телефон (чешский)',
-			'address' => 'Постоянный адрес',
+			'address' => 'Адрес прописки',
 			'address_cz' => 'Адрес в Чехии',
 			'father_name_ru' => 'Имя отца (кириллицей)',
 			'father_name_en' => 'Имя отца (латиницей)',
@@ -96,8 +103,12 @@ class Student extends CActiveRecord
 			'mother_virgin_surname_en' => 'Девичья фамилия матери (латницей)',
 			'mother_email' => 'Email матери',
 			'courses_ku_id' => 'Курсы КУ',
+			'need_dorm' => 'Общежитие',
+			'dorm_id' => 'Выберите общежитие',
+			'adapt_paket_id' => 'Адаптационная программа',
 			'manager_id' => 'Менеджер',
 			'referent_id' => 'Референт',
+			'study_year' => 'Учебный год',
 			'start_date' => 'Добавлен',
 		);
 	}
@@ -108,11 +119,16 @@ class Student extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('arrived',$this->arrived);
 		$criteria->compare('name_en',$this->name_en,true);
 		$criteria->compare('surname_en',$this->surname_en,true);
+		$criteria->compare('name_ru',$this->name_ru,true);
+		$criteria->compare('surname_ru',$this->surname_ru,true);
 		$criteria->compare('start_date',$this->start_date,true);
+		$criteria->compare('study_year',$this->study_year,true);
 		$criteria->compare('manager_id',$this->manager_id);
 		$criteria->compare('referent_id',$this->referent_id);
+		$criteria->compare('courses_ku_id',$this->courses_ku_id);
 
 		return new CActiveDataProvider($this, array(
                 'criteria'=>$criteria,
@@ -133,7 +149,7 @@ class Student extends CActiveRecord
          *
          * @return object
          */
-        public function managersAndReferents()
+        public static function managersAndReferents()
         {
                 $users = Users::model()->findAll(array(
                         'condition'=>'what IN (1,2)',
@@ -167,7 +183,7 @@ class Student extends CActiveRecord
          * @param int $manager_id 
          * @return string
          */
-        public function getManagerValue($managers, $manager_id)
+        public static function getManagerValue($managers, $manager_id)
         {
                 return (isset($managers[$manager_id])) ? $managers[$manager_id]->name : '';
         }
@@ -182,7 +198,7 @@ class Student extends CActiveRecord
          * @param int $referent_id 
          * @return string
          */
-        public function getReferentValue($referents, $referent_id)
+        public static function getReferentValue($referents, $referent_id)
         {
                 return (isset($referents[$referent_id])) ? $referents[$referent_id]->name : '';
         }
@@ -196,7 +212,7 @@ class Student extends CActiveRecord
          * @param int $status 
          * @return string
          */
-        public function getStatusValue($status)
+        public static function getStatusValue($status)
         {
                 $array = Student::getStatusArray();
                 return $array[$status];
@@ -232,6 +248,17 @@ class Student extends CActiveRecord
         }
 
 
+        /**
+         * Возвращает путь к папке для загрузки файлов 
+         * 
+         * @return string
+         */
+        public static function getUploadDir()
+        {
+                return Yii::getPathOfAlias('webroot.student_files');
+        }
+
+
         // =====================================================
 
         public function beforeSave()
@@ -243,6 +270,35 @@ class Student extends CActiveRecord
                         $this->password = substr( md5(time()), -6 );
 
                 return parent::beforeSave();
+        }
+
+
+        /**
+         * Удаляем все связи 
+         * 
+         * @return void
+         */
+        public function beforeDelete()
+        {
+                $student = self::model()->findByPk($this->id);
+
+                $student->arrival->delete();
+                $student->visa->delete();
+                $student->education->delete();
+
+                foreach ($student->post as $m) 
+                        $m->delete();
+
+                foreach ($student->tests as $m) 
+                        $m->delete();
+
+                foreach ($student->missing_subjects as $m) 
+                        $m->delete();
+
+                foreach ($student->files as $m) 
+                        $m->delete();
+
+                return parent::beforeDelete();
         }
 
 }

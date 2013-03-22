@@ -2,11 +2,33 @@ html {
         overflow-y: -moz-scrollbars-vertical;
         overflow-y: scroll;
 }
+a {
+        color:#1D6386; 
+}
+.banner {
+        height:122px;
+        background-image: url('images/banner.png');
+        background-position: 0px 0px;
+        background-color: white;
+        position:relative;
+        width:1230px;
+        margin:-20px 0 20px -20px;
+}
+.banner-logo {
+        position: absolute;
+        top: 37px;
+        left: 37px;
+        width: 163px;
+        height: 63px;
+        padding: 0px;
+        margin: 0px;
+        border: none;
+}
 .toggle-link {
         cursor: pointer;
 }
 .centered {
-        text-align:center;
+        text-align:center !important;
 }
 
 .alt {
@@ -49,4 +71,7 @@ html {
 label {
         font-weight:690;
         color:#003F69;
+}
+.inline-checkbox label {
+        display:inline;
 }

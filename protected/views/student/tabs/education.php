@@ -1,8 +1,11 @@
 <div class='tab-title'>
+        <?php echo CHtml::link(
+                CHtml::image(Yii::app()->baseUrl.'/css/images/edit_big.png'), 
+                array('/student/updateEducation/', 'id'=>$model->student_id)
+        ); ?>
         Образование студента
 </div>
 
-<?php echo CHtml::link('Редактировать', array('/student/updateEducation/', 'id'=>$model->student_id)); ?>
 
 <h1><small>Среднее образование</small></h1>
 
@@ -18,7 +21,7 @@
                 'school_start',
                 'school_end',
 	),
-        'htmlOptions'=>array('class'=>'table side-table table-hover'),
+        'htmlOptions'=>array('class'=>'table side-table table-hover table-bordered'),
 )); ?>
 
 <h1><small>Высшее образование (если есть)</small></h1>
@@ -32,5 +35,5 @@
                 'university_start',
                 'university_end',
 	),
-        'htmlOptions'=>array('class'=>'table side-table table-hover'),
+        'htmlOptions'=>array('class'=>'table side-table table-hover table-bordered'),
 )); ?>

@@ -17,7 +17,6 @@ return CMap::mergeArray(
                                 'username' => 'root',
                                 'password' => '123759',
                                 'charset' => 'utf8',
-                                //'schemaCachingDuration'=>3600*24,
                                 'enableProfiling'=>true,
                                 'enableParamLogging'=>true,
                         ),

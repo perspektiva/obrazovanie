@@ -5,7 +5,9 @@ body {
 }
 .main-container {
         padding:20px;
+        margin-bottom:70px;
         background:white;
+        box-shadow:0px 0px 61px -16px black; 
 }
 .top-tabs {
         margin-top:30px;
@@ -27,19 +29,29 @@ legend {
         background:#fafafa;
 }
 table th {
+        text-align:center !important;
         background:#f3f8fc;
+        /*border:1px solid #ddd !important;*/
 }
 .side-table th {
+        text-align:left !important;
         width:30%;
 }
 
 /*// =========== Index ===========*/
+#search-form {
+        margin:0;
+}
+.search-img {
+        margin-left:10px;
+}
 .name-title {
         color:navy;
         font-size:20px;
 }
 .status-potential {
         color:orange;
+        /*color:blueviolet;*/
 }
 .status-actual {
         color:magenta;
@@ -58,11 +70,34 @@ fieldset.form {
 
 
 /*// =========== Табы ===========*/
+ul.nav-tabs a {
+        padding: 3px 7px;
+        border: 1px solid #6C6 !important;
+        background-color: #CFC;
+}
+ul.nav-tabs a:hover {
+        background:white;
+        border-bottom: 1px solid white !important;
+}
+ul.nav-tabs li.active a {
+        border-bottom: 1px solid white !important;
+}
 .tab-title {
+        text-align:center;
         color:navy;
         font-size:25px;
         font-weight:bold;
         margin-bottom:30px;
         margin-top:10px;
+}
+.adminka-ul li {
+        padding:7px;
+}
+.padding20 {
+        padding:20px;
+}
+hr.huge-separator {
+        height:10px;
+        background:#aaa;
 }
 /*// ----------- Табы -----------*/

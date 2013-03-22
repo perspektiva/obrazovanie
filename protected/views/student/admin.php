@@ -1,7 +1,38 @@
 <?php $pageSize = Yii::app()->user->getState("pageSize",20); ?>
-<h2>Студенты</h2>
+<h2>
+        <?php echo CHtml::link(
+                CHtml::image(Yii::app()->baseUrl.'/css/images/add.png'), 
+                array('create')
+        ); ?>
+        Студенты
+</h2>
 
-<?php echo CHtml::link(Yii::t('admin','Добавить'), array('create'), array('class'=>'btn btn-info')); ?>
+<?php echo CHtml::link(
+        'Расширенный поиск'.CHtml::image(Yii::app()->baseUrl.'/css/images/search.png', '', array('class'=>'search-img')),
+        '#',array('class'=>'search-link rounded3')
+); ?>
+
+<div class="search-form" style="display:none">
+        <?php $this->renderPartial('_search',array(
+                'model'=>$model,
+        )); ?>
+</div>
+
+
+<?php
+Yii::app()->clientScript->registerScript('my-list-search', "
+        $('.search-link').click(function(){
+                $('.search-form').toggle();
+                return false;
+        });
+        $('.search-form form').submit(function(){
+                $.fn.yiiListView.update('student-grid', {
+                        data: $(this).serialize()
+                });
+                return false;
+        });
+");
+?>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'student-grid',
@@ -37,7 +68,7 @@
                         'filter'=>CHtml::listData($referents, "id", "name"),
                 ),
                 array(
-                        'name'=>'start_date',
+                        'name'=>'study_year',
                         'htmlOptions'=>array(
                                 'width'=>'110',
                                 'class'=>'centered'

@@ -12,10 +12,6 @@ class StudentController extends DefaultController
                 $path = 'ext.actions.StudentAction';
 
                 return array(
-                        'progress'=>array(
-                                'class'=>$path,
-                                'actionModel'=>'Progress',
-                        ),
                         // вкладка "Виза"
                         'visa'=>array(
                                 'class'=>$path,
@@ -55,7 +51,7 @@ class StudentController extends DefaultController
         public function filters()
         {
                 return array(
-                        'paramsForLayout -admin, create, delete',
+                        'paramsForLayout -admin, create, delete, adminka',
                 );
         }
 
@@ -101,9 +97,65 @@ class StudentController extends DefaultController
         public function actionShortInfo($id)
         {
                 $student = $this->loadModel($id);
+                $cashflow = Cashflow::model()->findAllByAttributes(array('student_id'=>$id));
 
                 $this->render('shortInfo', array(
-                        'student'=>$student,
+                        'student'  => $student,
+                        'cashflow' => $cashflow,
+                ));
+        }
+
+
+        /**
+         * Вкладка "Успеваемость"
+         */
+        public function actionProgress($id)
+        {
+                $student = $this->loadModel($id);
+                $tests = new Tests;
+                $missing = new MissingSubjects('progress');
+
+                //Добавление пропущенного предмета
+                if (isset($_POST['MissingSubjects'])) 
+                {
+                        $missing->student_id = $student->id;
+                        $missing->attributes = $_POST['MissingSubjects'];
+                        if ($missing->save())
+                                $this->redirect(array('/student/progress', 'id'=>$student->id));
+                }
+
+                //Добавление результатов теста
+                if (isset($_POST['Tests'])) 
+                {
+                        $tests->student_id = $student->id;
+                        $tests->attributes = $_POST['Tests'];
+                        if ($tests->save())
+                                $this->redirect(array('/student/progress', 'id'=>$student->id));
+                }
+
+                $testsDataProvider = new CArrayDataProvider($student->tests, array(
+                        'sort'=>array(
+                            'defaultOrder'=>'id DESC',
+                        ),
+                        'pagination'=>array(
+                                'pageSize'=>10,
+                        ),
+                )); 
+                $missingDataProvider = new CArrayDataProvider($student->missing_subjects, array(
+                        'sort'=>array(
+                            'defaultOrder'=>'id DESC',
+                        ),
+                        'pagination'=>array(
+                                'pageSize'=>10,
+                        ),
+                )); 
+
+                $this->render('tabs/progress', array(
+                        'student'             => $student,
+                        'tests'               => $tests,
+                        'testsDataProvider'   => $testsDataProvider,
+                        'missing'             => $missing,
+                        'missingDataProvider' => $missingDataProvider,
                 ));
         }
 
@@ -115,8 +167,25 @@ class StudentController extends DefaultController
         {
                 $student = $this->loadModel($id);
 
-                $this->render('dogovor', array(
+                $this->render('tabs/dogovor', array(
                         'student'=>$student,
+                ));
+                
+        }
+
+
+        /**
+         * Вкладка "Адапт. программа"
+         */
+        public function actionAdapt($id)
+        {
+                $student = $this->loadModel($id);
+                $items = $student->adapt_paket->items;
+
+                $this->render('tabs/adapt', array(
+                        'items'=>$items,
+                        'student'=>$student,
+                        'i'=>0,
                 ));
                 
         }
@@ -129,57 +198,87 @@ class StudentController extends DefaultController
         {
                 $student = $this->loadModel($id);
 
-                $this->render('post', array(
+                $postDataProvider = new CArrayDataProvider($student->post, array(
+                        'sort'=>array(
+                            'defaultOrder'=>'id DESC',
+                        ),
+                        'pagination'=>array(
+                                'pageSize'=>20,
+                        ),
+                )); 
+
+                $this->render('tabs/post', array(
                         'student'=>$student,
+                        'postDataProvider'=>$postDataProvider,
                 ));
                 
         }
 
 
         /**
-         * Вкладка "Переводы"
+         * Вкладка "Документы"
          */
-        public function actionTranslations($id)
+        public function actionDocs($id)
         {
                 $student = $this->loadModel($id);
+                $allFiles = Files::model()->findAll();
 
-                $this->render('translations', array(
-                        'student'=>$student,
+                //Загружаем файлы
+                if ( isset($_POST['StudentFiles']) AND ($_FILES['student_file']['error'] == 0) ) 
+                {
+                        $fileName = $student->id.'_'.time().'_'.$_FILES['student_file']['name'];
+                        if ( move_uploaded_file($_FILES['student_file']['tmp_name'], 'student_files/'.$fileName) )
+                        {
+                                $file = StudentFiles::model()->findByPk((int)$_POST['file_id']);
+                                if (! $file)
+                                        $file = new StudentFiles;
+
+                                $file->student_id = $student->id;
+                                $file->file_id = $_POST['file_id'];
+                                $file->file = $fileName;
+                                $file->save(false);
+                        }
+                }
+
+                $this->render('tabs/docs', array(
+                        'student' => $student,
+                        'allFiles' => $allFiles,
                 ));
                 
         }
 
 
         /**
-         * Вкладка "Доверенности"
-         */
-        public function actionDoverennosti($id)
-        {
-                $student = $this->loadModel($id);
-
-                $this->render('doverennosti', array(
-                        'student'=>$student,
-                ));
-                
-        }
-
-
-        /**
-         * Ставим значения для layout'a top_tabs - Иван Сидоров (Потенциальный)
-         * Пихать в каждый экшен
+         * Вкладка "Админка"
          *
-         * @param model Student
-         * @return void
+         * Дальше работает могучий AdminkaController
          */
-        public function filterParamsForLayout($filterChain)
+        public function actionAdminka()
         {
-                $student = $this->loadModel((int)$_GET['id']);
+                $this->layout = 'main';
+                $file_model = new Files;
 
-                $this->student_name = $student->name_ru;
-                $this->student_surname = $student->surname_ru;
-                $this->student_id = $student->id;
-                $this->student_status = Student::getStatusValue($student->status);
+                if (isset($_POST['Files'])) 
+                {
+                        $file_model->name = $_POST['Files']['name'];
+                        if ($file_model->save())
+                                $file_model->unsetAttributes();
+                }
 
-                $filterChain->run();
+                $filesDataProvider = new CActiveDataProvider('Files', array(
+                        'sort'=>array(
+                            'defaultOrder'=>'id DESC',
+                        ),
+                        'pagination'=>array(
+                                'pageSize'=>15,
+                        ),
+                ));
+
+                $this->render('tabs/adminka', array(
+                        'file_model'        => $file_model,
+                        'filesDataProvider' => $filesDataProvider,
+                ));
+                
         }
+
 }

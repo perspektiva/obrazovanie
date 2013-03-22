@@ -1,12 +1,12 @@
-<div class='tab-title'>
+<div class='tab-title' style='text-align:left'>
         Главная информация о студенте
 </div>
 
-<!-- // =========== Состояние студента ===========  --!>
+<!-- // =========== Состояние студента ===========  -->
 <div class='row'>
         <div class='span18'>
                 <fieldset><legend>Состояние студента</legend>
-                        <table class='table side-table table-hover table-condensed'>
+                        <table class='table side-table table-hover table-condensed table-bordered'>
                                 <tr>
                                         <th>Номер в БД</th>
                                         <td><?php echo $student->id; ?></td>
@@ -14,6 +14,14 @@
                                 <tr>
                                         <th>Статус</th>
                                         <td><?php echo $this->student_status; ?></td>
+                                </tr>
+                                <tr>
+                                        <th>Приехал(а)</th>
+                                        <td><?php echo ($student->arrived == 1) ? "<span style='color:green'>Да</span>" : "<span style='color:red'>Нет</span>" ?></td>
+                                </tr>
+                                <tr>
+                                        <th>Учебный год</th>
+                                        <td><?php echo $student->study_year; ?></td>
                                 </tr>
                                 <tr>
                                         <th>Менеджер</th>
@@ -25,7 +33,7 @@
                                 </tr>
                                 <tr>
                                         <th>Полная сдача документов</th>
-                                        <td><?php echo ($student->ready == 1) ? 'Да':'Нет'; ?></td>
+                                        <td><?php echo ($student->ready == 1) ? "<span style='color:green'>Да</span>" : "<span style='color:red'>Нет</span>" ?></td>
                                 </tr>
                         </table>
 
@@ -33,35 +41,12 @@
         </div>
 </div>
 
-<!-- // =========== Договоры ===========  --!>
-<br>
-<div class='row'>
-        <div class='span18'>
-                <fieldset><legend>Договоры</legend>
-                        <table class='table'>
-                                <thead>
-                                        <tr>
-                                                <th>Сгененированный договор</th>
-                                                <th>Дата</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                        <tr>
-                                                <td></td>
-                                                <td></td>
-                                        </tr>
-                                </tbody>
-                        </table>
-                </fieldset>
-        </div>
-</div>
-
-<!-- // =========== Оплаты ===========  --!>
+<!-- // =========== Оплаты ===========  -->
 <br>
 <div class='row'>
         <div class='span18'>
                 <fieldset><legend>Оплаты</legend>
-                        <table class='table'>
+                        <table class='table side-table table-condensed table-bordered'>
                                 <thead>
                                         <tr>
                                                 <th>Дата</th>
@@ -71,10 +56,15 @@
                                         </tr>
                                 </thead>
                                 <tbody>
+                                        <?php foreach($cashflow as $cash): ?>
+                                        <?php $bgcolor = ($cash->realizovano == 'off') ? "bgcolor='red' title='Не оплачен'" : "bgcolor='#37c54c' title='Оплачено'" ?>
                                         <tr>
-                                                <td></td>
-                                                <td></td>
+                                                <td><?php echo $cash->datum; ?></td>
+                                                <td><?php echo $cash->usluga; ?></td>
+                                                <td <?php echo $bgcolor; ?>><?php echo $cash->castka; ?></td>
+                                                <td><?php echo ($cash->mena == 'czk') ? 'CZK':'EUR'; ?></td>
                                         </tr>
+                                        <?php endforeach ?>
                                 </tbody>
                         </table>
                 </fieldset>

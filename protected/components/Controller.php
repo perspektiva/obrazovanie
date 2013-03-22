@@ -36,4 +36,33 @@ class Controller extends CController
          * @var string
          */
         public $student_id;
+
+
+
+        /**
+         * Ставим значения для layout'a top_tabs - Иван Сидоров (Потенциальный)
+         *
+         * Пихать в каждый экшен каждого контроллера кроме тех, где не показывается КОНКРЕТНЫЙ студент (т.е. нет $id)
+         * Например:
+                        public function filters()
+                        {
+                                return array(
+                                        'paramsForLayout -admin, create, delete',
+                                );
+                        }
+         *
+         * @param model Student
+         * @return void
+         */
+        public function filterParamsForLayout($filterChain)
+        {
+                $student = Student::model()->findByPk((int)$_GET['id']);
+
+                $this->student_name = $student->name_ru;
+                $this->student_surname = $student->surname_ru;
+                $this->student_id = $student->id;
+                $this->student_status = Student::getStatusValue($student->status);
+
+                $filterChain->run();
+        }
 }

@@ -18,16 +18,22 @@
 
         <fieldset class='form'><legend>Разное</legend>
                 <div class='row'>
-                        <div class='span4'>
+                        <div class='span5'>
                                 <?php echo $form->labelEx($model,'status'); ?>
                                 <?php echo $form->dropDownList($model,'status', Student::getStatusArray(false), array('class'=>'span4')); ?>
                                 <?php echo $form->error($model,'status'); ?>
                         </div>
 
-                        <div class='span8'>
-                                <?php echo $form->labelEx($model,'courses_ku_id'); ?>
-                                <?php echo $form->dropDownList($model,'courses_ku_id', CHtml::listData(CoursesKu::model()->findAll(), 'id', 'name'), array('class'=>'span8', 'empty'=>'')); ?>
-                                <?php echo $form->error($model,'courses_ku_id'); ?>
+                        <div class='span3'>
+                                <?php echo $form->labelEx($model, 'arrived') ?>
+                                <?php echo $form->dropDownList($model, 'arrived', array(0=>'Нет',1=>'Да'), array('class'=>'span2')) ?>
+                                <?php echo $form->error($model, 'arrived') ?>
+                        </div>
+
+                        <div class='span3'>
+                                <?php echo $form->labelEx($model, 'study_year') ?>
+                                <?php echo $form->textField($model, 'study_year', array('class'=>'span2')) ?>
+                                <?php echo $form->error($model, 'study_year') ?>
                         </div>
 
                         <div class='span5'>
@@ -50,6 +56,34 @@
                 </div>
                 <br>
 
+                <div class='row'>
+                        <div class='span6'>
+                                <?php echo $form->labelEx($model,'courses_ku_id'); ?>
+                                <?php echo $form->dropDownList($model,'courses_ku_id', CHtml::listData(CoursesKu::model()->findAll(), 'id', 'name'), array('class'=>'span6', 'empty'=>'')); ?>
+                                <?php echo $form->error($model,'courses_ku_id'); ?>
+                        </div>
+                        
+                        <div class='span5 offset1'>
+                                <?php echo $form->labelEx($model,'adapt_paket_id'); ?>
+                                <?php echo $form->dropDownList($model,'adapt_paket_id', CHtml::listData(AdaptPakets::model()->findAll(), 'id', 'name'), array('class'=>'span5', 'empty'=>'')); ?>
+                                <?php echo $form->error($model,'adapt_paket_id'); ?>
+                        </div>
+
+                        <div class='span2 offset1'>
+                                <?php echo $form->labelEx($model, 'need_dorm') ?>
+                                <?php echo $form->dropDownList($model, 'need_dorm', array(0=>'Нет',1=>'Да'), array('class'=>'span2 dorm-toggler')) ?>
+                                <?php echo $form->error($model, 'need_dorm') ?>
+                        </div>
+
+                        <?php $hideDorms = $model->need_dorm ? '':'hide'; ?>
+
+                        <div class='dorm-toggled span5 offset1 <?php echo $hideDorms; ?>'>
+                                <?php echo $form->labelEx($model,'dorm_id'); ?>
+                                <?php echo $form->dropDownList($model,'dorm_id', CHtml::listData(Dorm::model()->findAll(), 'id', 'name'), array('class'=>'span5', 'empty'=>'')); ?>
+                                <?php echo $form->error($model,'dorm_id'); ?>
+                        </div>
+                </div>
+
         </fieldset>
 
         <br><br>
@@ -57,7 +91,7 @@
                 <div class='row'>
                         <div class='span3'>
                                 <?php echo $form->labelEx($model,'sex'); ?>
-                                <?php echo $form->dropDownList($model,'sex', array(1=>'Мужской', 2=>'Женский'), array('class'=>'span3')); ?>
+                                <?php echo $form->dropDownList($model,'sex', array(1=>'Мужской', 0=>'Женский'), array('class'=>'span3')); ?>
                                 <?php echo $form->error($model,'sex'); ?>
                         </div>
 
@@ -153,6 +187,12 @@
                                 <?php echo $form->labelEx($model,'birth_city'); ?>
                                 <?php echo $form->textField($model,'birth_city',array('class'=>'span6','maxlength'=>80)); ?>
                                 <?php echo $form->error($model,'birth_city'); ?>
+                        </div>
+
+                        <div class='span4'>
+                                <?php echo $form->labelEx($model, 'apostil') ?>
+                                <?php echo $form->dropDownList($model, 'apostil', array(0=>'Нет', 1=>'Да'), array('class'=>'span2')) ?>
+                                <?php echo $form->error($model, 'apostil') ?>
                         </div>
                 </div>
                 <br>

@@ -49,12 +49,12 @@ return array(
 			),
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=test',
+			'connectionString' => 'mysql:host=localhost;dbname=zl',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'zl',
+			'password' => 'gh16Hau7',
 			'charset' => 'utf8',
-                        //'schemaCachingDuration'=>3600*24,
+                        'schemaCachingDuration'=>3600*24,
 		),
 		'errorHandler'=>array(
 			'errorAction'=>'site/error',

@@ -1,20 +1,30 @@
 <div class='tab-title'>
+        <?php echo CHtml::link(
+                CHtml::image(Yii::app()->baseUrl.'/css/images/edit_big.png'), 
+                array('/student/update/', 'id'=>$model->id)
+        ); ?>
         Анкета
 </div>
-
-<?php echo CHtml::link('Редактировать', array('/student/update/', 'id'=>$model->id)); ?>
-<br><br>
 
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id',
+                array(
+                        'name'=>'Номер в БД',
+                        'value'=>$model->id,
+                ),
                 array(
                         'name'=>'status',
                         'value'=>Student::getStatusValue($model->status),
                         'type'=>'raw',
                 ),
+                array(
+                        'name'=>'arrived',
+                        'value'=>($model->arrived == 1) ? "<span style='color:green'>Да</span>" : "<span style='color:red'>Нет</span>",
+                        'type'=>'raw',
+                ),
+		'study_year',
 		'name_ru',
 		'surname_ru',
 		'otchestvo',
@@ -38,6 +48,10 @@
                         'value'=>CountryCode::model()->findByAttributes(array('id'=>$model->birth_country))->ru,
                 ),
 		'birth_city',
+                array(
+                        'name'=>'apostil',
+                        'value'=>($model->apostil == 1) ? "Да":"Нет",
+                ),
 		'email',
 		'phone',
 		'phone_cz',
@@ -45,19 +59,27 @@
 		'address_cz',
                 array(
                         'name'=>'courses_ku_id',
-                        'value'=>CoursesKu::model()->findByPk($model->courses_ku_id)->name,
+                        'value'=>$model->courses_ku->name." (".$model->courses_ku->duration_from." - ".$model->courses_ku->duration_to.")",
+                ),
+                array(
+                        'name'=>'need_dorm',
+                        'value'=>($model->need_dorm) ? $model->dorm->name : "Не требуется",
+                ),
+                array(
+                        'name'=>'adapt_paket_id',
+                        'value'=>$model->adapt_paket->name,
                 ),
                 array(
                         'name'=>'manager_id',
-                        'value'=>Users::model()->findByPk($model->manager_id)->name,
+                        'value'=>$model->manager->name,
                 ),
                 array(
                         'name'=>'referent_id',
-                        'value'=>Users::model()->findByPk($model->referent_id)->name,
+                        'value'=>$model->referent->name,
                 ),
 		'start_date',
 	),
-        'htmlOptions'=>array('class'=>'table side-table'),
+        'htmlOptions'=>array('class'=>'table side-table table-bordered'),
 )); ?>
 
 <h1><small>Мамуля</small></h1>
@@ -72,7 +94,7 @@
 		'mother_virgin_surname_en',
 		'mother_email',
 	),
-        'htmlOptions'=>array('class'=>'table side-table'),
+        'htmlOptions'=>array('class'=>'table side-table table-bordered'),
 )); ?>
 
 <h1><small>Папуля</small></h1>
@@ -85,5 +107,5 @@
 		'father_surname_en',
 		'father_email',
 	),
-        'htmlOptions'=>array('class'=>'table side-table'),
+        'htmlOptions'=>array('class'=>'table side-table table-bordered'),
 )); ?>

@@ -15,14 +15,14 @@
                                 'items'=>array(
                                         array('label'=>"Инфо", 'url'=>array('/student/shortInfo/', 'id'=>$this->student_id)),
                                         array('label'=>"Анкета", 'url'=>array('/student/view/', 'id'=>$this->student_id)),
+                                        array('label'=>"Договор и фактура", 'url'=>array('/student/dogovor/', 'id'=>$this->student_id)),
                                         array('label'=>"Образование", 'url'=>array('/student/education/', 'id'=>$this->student_id)),
                                         array('label'=>"Визы", 'url'=>array('/student/visa/', 'id'=>$this->student_id)),
                                         array('label'=>"Приезд", 'url'=>array('/student/arrival/', 'id'=>$this->student_id)),
+                                        array('label'=>"Адапт. программа", 'url'=>array('/student/adapt/', 'id'=>$this->student_id)),
                                         array('label'=>"Успеваемость", 'url'=>array('/student/progress/', 'id'=>$this->student_id)),
-                                        array('label'=>"Договор и фактура", 'url'=>array('/student/dogovor/', 'id'=>$this->student_id)),
                                         array('label'=>"Почта", 'url'=>array('/student/post/', 'id'=>$this->student_id)),
-                                        array('label'=>"Переводы", 'url'=>array('/student/translations/', 'id'=>$this->student_id)),
-                                        array('label'=>"Доверенности", 'url'=>array('/student/doverennosti/', 'id'=>$this->student_id)),
+                                        array('label'=>"Документы", 'url'=>array('/student/docs/', 'id'=>$this->student_id)),
                                 ),
                                 'htmlOptions'=>array(
                                         'class'=>'nav nav-tabs'

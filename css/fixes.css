@@ -4,6 +4,12 @@
         padding-left:0px;
         padding-right:0px;
 }
+.grid-view th select {
+        margin:0;
+        padding:0;
+        height:19px;
+}
+
 
 table.cke_dialog  input[type='text'] {
         margin-bottom:0px;
@@ -16,7 +22,6 @@ table.cke_dialog  input[type='text'] {
         box-shadow:none;
         -moz-box-shadow:none;
 }
-
 
 
 /*//======= Form Errors =======*/
