@@ -56,7 +56,7 @@
                 <?php 
                         //error_reporting(-1);
                         include('../connect_utf8.php');
-                        include('../includes/end.php'); 
+                        include('../includes/end-unicode.php'); 
                 ?>
         </div>
 </body>
