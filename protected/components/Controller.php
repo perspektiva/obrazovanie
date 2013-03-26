@@ -37,11 +37,8 @@ class Controller extends CController
          */
         public $student_id;
 
-        public $admins_group    = array(58);
-        public $referents_group = array(78);
-
-        //public $admins_group    = array(11, 13, 18, 14, 19);
-        //public $referents_group = array(24, 21, 2);
+        public $admins_group    = array(11, 13, 18, 14, 19);
+        public $referents_group = array(24, 21, 2);
 
 
 	public function filters()
