@@ -1,8 +1,5 @@
 <?php
 @session_start();
-echo "<pre>";
-var_dump($_SESSION);
-die();
 if ($_SERVER['HTTP_HOST'] =='localhost')
 {
         $yii=dirname(__FILE__).'/framework/yii.php';
