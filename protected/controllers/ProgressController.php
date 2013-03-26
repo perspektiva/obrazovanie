@@ -7,6 +7,7 @@ class ProgressController extends Controller
         public function filters()
         {
                 return array(
+                        'accessControl',
                         'paramsForLayout',
                 );
         }

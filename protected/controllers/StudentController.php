@@ -51,6 +51,7 @@ class StudentController extends DefaultController
         public function filters()
         {
                 return array(
+                        'accessControl',
                         'paramsForLayout -admin, create, delete, adminka, noAccess',
                 );
         }
