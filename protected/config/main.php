@@ -34,8 +34,8 @@ return array(
                         'enableCookieValidation'=>true,
                 ),
 		'user'=>array(
-			'allowAutoLogin'=>true,
-                        //'loginUrl'=>array('/login/default/index'),
+                        //'allowAutoLogin'=>true,
+                        'loginUrl'=>array('/student/noAccess'),
 		),
 		'urlManager'=>array(
                         //'showScriptName'=>false,

@@ -51,7 +51,7 @@ class StudentController extends DefaultController
         public function filters()
         {
                 return array(
-                        'paramsForLayout -admin, create, delete, adminka',
+                        'paramsForLayout -admin, create, delete, adminka, noAccess',
                 );
         }
 
@@ -281,4 +281,9 @@ class StudentController extends DefaultController
                 
         }
 
+        public function actionNoAccess()
+        {
+                $this->layout = 'noAccess';
+                $this->render('noAccess');
+        }
 }

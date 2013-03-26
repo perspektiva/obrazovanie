@@ -37,7 +37,29 @@ class Controller extends CController
          */
         public $student_id;
 
+        public $admins_group    = array(11, 13, 18, 14, 19);
+        public $referents_group = array(24, 21, 2);
 
+
+
+	public function filters()
+	{
+		return array(
+			'accessControl',
+		);
+	}
+
+	public function accessRules()
+	{
+                return array(
+                        array('allow',
+                                'expression'=>in_array( $_SESSION['group'], array_merge($this->admins_group, $this->referents_group) ),
+                        ),
+                        array('deny',
+                                'users'=>array('*'),
+                        ),
+                );
+	}
 
         /**
          * Ставим значения для layout'a top_tabs - Иван Сидоров (Потенциальный)

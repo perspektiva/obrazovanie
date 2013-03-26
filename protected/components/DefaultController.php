@@ -9,24 +9,24 @@ class DefaultController extends Controller
         public $createRedirect = array();
         public $updateRedirect = array();
 
-	public function filters()
-	{
-		return array(
-			'accessControl',
-		);
-	}
+	//public function filters()
+	//{
+		//return array(
+			//'accessControl',
+		//);
+	//}
 
-	public function accessRules()
-	{
-                return array(
-                        array('allow',
-                                'expression'=>'true'
-                        ),
-                        array('deny',
-                                'users'=>array('*'),
-                        ),
-                );
-	}
+	//public function accessRules()
+	//{
+                //return array(
+                        //array('allow',
+                                //'expression'=>'true'
+                        //),
+                        //array('deny',
+                                //'users'=>array('*'),
+                        //),
+                //);
+	//}
 
 	public function actionView($id)
 	{

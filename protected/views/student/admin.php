@@ -42,6 +42,8 @@ Yii::app()->clientScript->registerScript('my-list-search', "
 	'columns'=>array(
                 array(
                         'name'=>'id',
+                        'value'=>'CHtml::link($data->id, array("/student/shortinfo/".$data->id))',
+                        'type'=>'raw',
                         'htmlOptions'=>array(
                                 'width'=>'40',
                                 'class'=>'centered'
