@@ -59,11 +59,11 @@
                 <?php echo $content; ?>
 
                 <?php if($_SERVER['HTTP_HOST'] != 'localhost'): ?>
-                        <?php include('../connect_utf8.php'); ?>
+                        <?php include_once('../connect_utf8.php'); ?>
 
                         <div class='stupid-footer'>
                                 <div class='stupid-footer-catcher'>
-                                        <?php include('../includes/end-unicode.php'); ?>
+                                        <?php include_once('../includes/end-unicode.php'); ?>
                                 </div>
                                 
                         </div>

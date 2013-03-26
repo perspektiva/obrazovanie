@@ -1,4 +1,6 @@
 <?php
+if($_SERVER['HTTP_HOST'] != 'localhost') 
+        include_once('../connect_utf8.php');
 
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
@@ -49,10 +51,12 @@ return array(
 			),
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=study',
+			'connectionString' => 'mysql:host='.$h.';dbname=po4tacz',
 			'emulatePrepare' => true,
-			'username' => 'zl',
-			'password' => 'gh16Hau7',
+                        //'username' => 'zl',
+                        //'password' => 'gh16Hau7',
+			'username' => $u,
+			'password' => $p,
 			'charset' => 'utf8',
                         'schemaCachingDuration'=>3600*24,
 		),

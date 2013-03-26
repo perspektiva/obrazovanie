@@ -37,6 +37,11 @@ class Controller extends CController
          */
         public $student_id;
 
+        /**
+         * Номера групп (в сессии), по которым осуществляется доступ
+         * 
+         * @var array
+         */
         public $admins_group    = array(11, 13, 18, 14, 19);
         public $referents_group = array(24, 21, 2);
 
@@ -85,7 +90,7 @@ class Controller extends CController
         }
 
         /**
-         * Показывать или нет "Админка" в верхнем меню 
+         * Показывать или нет "Админка" в верхнем меню (для CMenu)
          * 
          * @return boolean
          */
