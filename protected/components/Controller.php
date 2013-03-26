@@ -85,6 +85,26 @@ class Controller extends CController
         }
 
         /**
+         * Показывать или нет "Админка" в верхнем меню 
+         * 
+         * @return boolean
+         */
+        public function isAdminkaVisible()
+        {
+                
+                if ($_SERVER['HTTP_HOST'] == 'localhost')
+                        return true;
+
+                if (! isset($_SESSION['group']))
+                        return false;
+
+                if ( in_array($_SESSION['group'], $this->admins_group) )
+                        return true;
+
+                return false;
+        }
+
+        /**
          * Ставим значения для layout'a top_tabs - Иван Сидоров (Потенциальный)
          *
          * Пихать в каждый экшен каждого контроллера кроме тех, где не показывается КОНКРЕТНЫЙ студент (т.е. нет $id)

@@ -42,7 +42,11 @@
                         <?php
                         $this->widget('zii.widgets.CMenu',array(
                                 'items'=>array(
-                                        array('label'=>"<i class='icon-wrench'></i> Админка", 'url'=>array('/student/adminka')),
+                                        array(
+                                                'label'=>"<i class='icon-wrench'></i> Админка", 
+                                                'url'=>array('/student/adminka'),
+                                                'visible'=>$this->isAdminkaVisible(),
+                                        ),
                                 ),
                                 'htmlOptions'=>array(
                                         'class'=>'nav nav-pills pull-right span3'
