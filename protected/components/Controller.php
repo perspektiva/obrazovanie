@@ -53,15 +53,39 @@ class Controller extends CController
 
 	public function accessRules()
 	{
+                $isAllowed = $this->_expressionForRules();
                 return array(
                         array('allow',
-                                'expression'=>in_array( $_SESSION['group'], array_merge($this->admins_group, $this->referents_group) ),
+                                'actions'=>array('noAccess'),
+                                'users'=>array('*'),
+                        ),
+                        array('allow',
+                                'expression'=>"{$isAllowed}",
                         ),
                         array('deny',
                                 'users'=>array('*'),
                         ),
                 );
 	}
+
+        /**
+         * Expression для accessRules 
+         * 
+         * @return boolean
+         */
+        private function _expressionForRules()
+        {
+                if ($_SERVER['HTTP_HOST'] == 'localhost')
+                        return true;
+
+                if (! isset($_SESSION['group']))
+                        return false;
+
+                if ( in_array($_SESSION['group'], array_merge($this->admins_group, $this->referents_group)) )
+                        return true;
+
+                return false;
+        }
 
         /**
          * Ставим значения для layout'a top_tabs - Иван Сидоров (Потенциальный)
