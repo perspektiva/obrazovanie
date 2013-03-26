@@ -56,7 +56,7 @@ return array(
 			'username' => $u,
 			'password' => $p,
 			'charset' => 'utf8',
-                        'schemaCachingDuration'=>3600*24,
+                        //'schemaCachingDuration'=>3600*24,
 		),
 		'errorHandler'=>array(
 			'errorAction'=>'site/error',
