@@ -82,7 +82,7 @@
         'htmlOptions'=>array('class'=>'table side-table table-bordered'),
 )); ?>
 
-<h1><small>Мамуля</small></h1>
+<h1><small>Мать</small></h1>
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
@@ -97,7 +97,7 @@
         'htmlOptions'=>array('class'=>'table side-table table-bordered'),
 )); ?>
 
-<h1><small>Папуля</small></h1>
+<h1><small>Отец</small></h1>
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
