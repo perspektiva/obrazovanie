@@ -53,8 +53,6 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host='.$h.';dbname=po4tacz',
 			'emulatePrepare' => true,
-                        //'username' => 'zl',
-                        //'password' => 'gh16Hau7',
 			'username' => $u,
 			'password' => $p,
 			'charset' => 'utf8',
