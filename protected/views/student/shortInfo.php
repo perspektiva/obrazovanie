@@ -17,7 +17,11 @@
                                 </tr>
                                 <tr>
                                         <th>Приехал(а)</th>
-                                        <td><?php echo ($student->arrived == 1) ? "<span style='color:green'>Да</span>" : "<span style='color:red'>Нет</span>" ?></td>
+                                        <td>
+                                                <?php echo ($student->arrived == 1) ? 
+                                                        "<span style='color:green'>Да (".CHtml::value($student, 'arrival.arrival_date').")</span> " :
+                                                        "<span style='color:red'>Нет</span>"; ?>
+                                        </td>
                                 </tr>
                                 <tr>
                                         <th>Учебный год</th>
@@ -25,11 +29,11 @@
                                 </tr>
                                 <tr>
                                         <th>Менеджер</th>
-                                        <td><?php echo $student->manager->name; ?></td>
+                                        <td><?php echo CHtml::value($student, 'manager.name'); ?></td>
                                 </tr>
                                 <tr>
                                         <th>Референт</th>
-                                        <td><?php echo $student->referent->name; ?></td>
+                                        <td><?php echo CHtml::value($student, 'referent.name'); ?></td>
                                 </tr>
                                 <tr>
                                         <th>Полная сдача документов</th>

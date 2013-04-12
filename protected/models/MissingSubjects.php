@@ -29,6 +29,8 @@ class MissingSubjects extends CActiveRecord
 			array('missing_subject', 'length', 'max'=>100),
 			array('missing_date', 'length', 'max'=>20),
 
+                        array('missing_comment', 'safe'),
+
 			array('id, missing_subject, missing_date, missing_comment', 'safe', 'on'=>'search'),
 		);
 	}

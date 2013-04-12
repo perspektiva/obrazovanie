@@ -30,9 +30,25 @@
                                 <?php echo $form->error($model, 'arrived') ?>
                         </div>
 
-                        <div class='span3'>
+                        <div class='span4'>
                                 <?php echo $form->labelEx($model, 'study_year') ?>
-                                <?php echo $form->textField($model, 'study_year', array('class'=>'span2')) ?>
+                                <?php echo $form->dropDownList($model, 'study_year', 
+                                        array(
+                                                '2013/2014' => '2013/2014',
+                                                '2014/2015' => '2014/2015',
+                                                '2015/2016' => '2015/2016',
+                                                '2016/2017' => '2016/2017',
+                                                '2017/2018' => '2017/2018',
+                                                '2018/2019' => '2018/2019',
+                                                'Лето 2013' => 'Лето 2013',
+                                                'Лето 2014' => 'Лето 2014',
+                                                'Лето 2015' => 'Лето 2015',
+                                                'Лето 2016' => 'Лето 2016',
+                                                'Лето 2017' => 'Лето 2017',
+                                                'Лето 2018' => 'Лето 2018',
+                                        ),
+                                        array('class'=>'span3')
+                                ); ?>
                                 <?php echo $form->error($model, 'study_year') ?>
                         </div>
 
@@ -48,8 +64,8 @@
                         <div class='span5'>
                                 <?php echo $form->labelEx($model,'referent_id'); ?>
                                 <?php echo $form->dropDownList($model,'referent_id', CHtml::listData(Users::model()->findAll(array(
-                                        'condition'=>'what = 2',
-                                        'order'=>'active DESC, name ASC',
+                                        'condition'=>'what = 21',
+                                        'order'=>'name ASC',
                                 )), 'id', 'name')); ?>
                                 <?php echo $form->error($model,'referent_id'); ?>
                         </div>
@@ -81,6 +97,15 @@
                                 <?php echo $form->labelEx($model,'dorm_id'); ?>
                                 <?php echo $form->dropDownList($model,'dorm_id', CHtml::listData(Dorm::model()->findAll(), 'id', 'name'), array('class'=>'span5', 'empty'=>'')); ?>
                                 <?php echo $form->error($model,'dorm_id'); ?>
+                        </div>
+                </div>
+                <br>
+
+                <div class='row'>
+                        <div class='span15'>
+                                <?php echo $form->labelEx($model, 'speciality') ?>
+                                <?php echo $form->textField($model, 'speciality', array('class'=>'span15')) ?>
+                                <?php echo $form->error($model, 'speciality') ?>
                         </div>
                 </div>
 
@@ -238,6 +263,12 @@
                                 <?php echo $form->error($model,'email'); ?>
                         </div>
 
+                        <div class='span7'>
+                                <?php echo $form->labelEx($model,'email2'); ?>
+                                <?php echo $form->textField($model,'email2',array('class'=>'span6','maxlength'=>100)); ?>
+                                <?php echo $form->error($model,'email2'); ?>
+                        </div>
+
                         <div class='span5'>
                                 <?php echo $form->labelEx($model,'phone'); ?>
                                 <?php echo $form->textField($model,'phone',array('class'=>'span5','maxlength'=>30)); ?>
@@ -297,14 +328,20 @@
                 <br>
 
                 <div class='row'>
-                        <div class='span7'>
+                        <div class='span5'>
                                 <?php echo $form->labelEx($model,'father_email'); ?>
-                                <?php echo $form->textField($model,'father_email',array('class'=>'span7','maxlength'=>100)); ?>
+                                <?php echo $form->textField($model,'father_email',array('class'=>'span5','maxlength'=>100)); ?>
                                 <?php echo $form->error($model,'father_email'); ?>
+                        </div>
+
+                        <div class='span5'>
+                                <?php echo $form->labelEx($model, 'father_phone') ?>
+                                <?php echo $form->textField($model, 'father_phone', array('class'=>'span5')) ?>
+                                <?php echo $form->error($model, 'father_phone') ?>
                         </div>
                 </div>
 
-                <hr>
+                <hr><hr>
 
                 <div class='row'>
                         <div class='span5'>
@@ -349,10 +386,16 @@
                 <br>
 
                 <div class='row'>
-                        <div class='span7'>
+                        <div class='span5'>
                                 <?php echo $form->labelEx($model,'mother_email'); ?>
-                                <?php echo $form->textField($model,'mother_email',array('class'=>'span7','maxlength'=>100)); ?>
+                                <?php echo $form->textField($model,'mother_email',array('class'=>'span5','maxlength'=>100)); ?>
                                 <?php echo $form->error($model,'mother_email'); ?>
+                        </div>
+
+                        <div class='span7'>
+                                <?php echo $form->labelEx($model, 'mother_phone') ?>
+                                <?php echo $form->textField($model, 'mother_phone', array('class'=>'span5')) ?>
+                                <?php echo $form->error($model, 'mother_phone') ?>
                         </div>
                 </div>
         </fieldset>

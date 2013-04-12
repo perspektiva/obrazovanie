@@ -34,7 +34,7 @@ class Education extends CActiveRecord
 		return array(
 			array('student_id, school_name, school_start, school_end, school_city, school_type', 'required'),
 			array('student_id, school_type', 'numerical', 'integerOnly'=>true),
-			array('school_name, university_name, university_speciality, university_title', 'length', 'max'=>255),
+			array('school_name, university_name, university_speciality, university_title, university_address', 'length', 'max'=>255),
 			array('school_start, school_end, university_start, university_end', 'length', 'max'=>20),
 			array('school_city', 'length', 'max'=>255),
 
@@ -51,18 +51,19 @@ class Education extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'school_name' => 'Название школы',
-			'school_start' => 'Дата начала',
-			'school_end' => 'Дата окончания',
-			'school_city' => 'Адрес школы',
-			'school_type' => 'Тип школы',
-			'university_name' => 'Название университета',
+			'id'                    => 'ID',
+			'student_id'            => 'Student',
+			'school_name'           => 'Название школы',
+			'school_start'          => 'Год начала',
+			'school_end'            => 'Год окончания',
+			'school_city'           => 'Адрес школы',
+			'school_type'           => 'Тип школы',
+			'university_name'       => 'Название университета',
 			'university_speciality' => 'Специальность',
-			'university_title' => 'Титул',
-			'university_start' => 'Дата начала',
-			'university_end' => 'Дата окончания',
+			'university_title'      => 'Титул',
+			'university_address'    => 'Адрес университета',
+			'university_start'      => 'Год начала',
+			'university_end'        => 'Год окончания',
 		);
 	}
 
@@ -93,6 +94,19 @@ class Education extends CActiveRecord
                 ),
 		));
 	}
+
+        /**
+         * Список годов для dropDownList 
+         * 
+         * @return array
+         */
+        public static function yearsForSelect()
+        {
+                for ($i = 1980; $i < 2020; $i++)
+                        $out[$i] = $i;
+
+                return $out;
+        }
 
 
         /**

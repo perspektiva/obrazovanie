@@ -42,7 +42,7 @@ class Controller extends CController
          * 
          * @var array
          */
-        public $admins_group    = array(11, 13, 18, 14, 19);
+        public $admins_group    = array(11, 13, 18, 14, 19, 21);
         public $referents_group = array(24, 21, 2);
 
 

@@ -37,6 +37,10 @@ table th {
         text-align:left !important;
         width:30%;
 }
+.comment_lupa {
+        height:20px;
+        cursor:pointer;
+}
 
 /*// =========== Index ===========*/
 #search-form {

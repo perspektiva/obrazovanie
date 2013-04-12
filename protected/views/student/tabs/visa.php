@@ -14,6 +14,11 @@
                         'value'=>CityCode::getCityValue($model->send_city),
                 ),
                 'send_date',
+                array(
+                        'name'=>'comments',
+                        'value'=>nl2br($model->comments),
+                        'type'=>'html',
+                ),
 	),
         'htmlOptions'=>array('class'=>'table side-table table-hover table-bordered'),
 )); ?>

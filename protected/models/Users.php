@@ -11,4 +11,12 @@ class Users extends CActiveRecord
 		return 'users';
 	}
 
+
+        public function defaultScope()
+        {
+                return array(
+                        'condition' => "active = 'on'",
+                );
+        }
+
 }

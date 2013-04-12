@@ -21,10 +21,13 @@
                 ),
                 array(
                         'name'=>'arrived',
-                        'value'=>($model->arrived == 1) ? "<span style='color:green'>Да</span>" : "<span style='color:red'>Нет</span>",
+                        'value'=>($model->arrived == 1) ? 
+                                "<span style='color:green'>Да (".CHtml::value($model, 'arrival.arrival_date').")</span>" :
+                                "<span style='color:red'>Нет</span>",
                         'type'=>'raw',
                 ),
 		'study_year',
+		'speciality',
 		'name_ru',
 		'surname_ru',
 		'otchestvo',
@@ -53,6 +56,7 @@
                         'value'=>($model->apostil == 1) ? "Да":"Нет",
                 ),
 		'email',
+		'email2',
 		'phone',
 		'phone_cz',
 		'address',
@@ -71,11 +75,11 @@
                 ),
                 array(
                         'name'=>'manager_id',
-                        'value'=>$model->manager->name,
+                        'value'=>CHtml::value($model, 'manager.name'),
                 ),
                 array(
                         'name'=>'referent_id',
-                        'value'=>$model->referent->name,
+                        'value'=>CHtml::value($model, 'referent.name'),
                 ),
 		'start_date',
 	),
@@ -93,6 +97,7 @@
 		'mother_virgin_surname_ru',
 		'mother_virgin_surname_en',
 		'mother_email',
+		'mother_phone',
 	),
         'htmlOptions'=>array('class'=>'table side-table table-bordered'),
 )); ?>
@@ -106,6 +111,7 @@
 		'father_surname_ru',
 		'father_surname_en',
 		'father_email',
+		'father_phone',
 	),
         'htmlOptions'=>array('class'=>'table side-table table-bordered'),
 )); ?>

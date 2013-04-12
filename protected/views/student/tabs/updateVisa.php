@@ -36,6 +36,14 @@
                 </div>
         </div>
 
+        <div class='row'>
+                <div class='span15'>
+                        <?php echo $form->labelEx($model, 'comments') ?>
+                        <?php echo $form->textArea($model, 'comments', array('class'=>'span15', 'rows'=>7)) ?>
+                        <?php echo $form->error($model, 'comments') ?>
+                </div>
+        </div>
+
         <br><br>
         <?php echo CHtml::submitButton('Сохранить',array('class'=>'btn btn-primary')) ?>
 

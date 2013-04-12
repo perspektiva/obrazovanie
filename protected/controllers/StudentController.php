@@ -70,9 +70,9 @@ class StudentController extends DefaultController
                         unset($_GET['pageSize']);  
                 }
 
-		$model=new $this->modelName('search');
+		$model=new Student('search');
 		$model->unsetAttributes();  
-		if(isset($_GET[$this->modelName]))
+		if(isset($_GET['Student']))
 			$model->attributes=$_GET[$this->modelName];
 
                 // Создание массивов менеджеров и референтов для грида

@@ -30,7 +30,7 @@
         <?php echo $form->error($model, 'missing_date') ?>
 
         <?php echo $form->labelEx($model, 'missing_comment') ?>
-        <?php echo $form->textArea($model, 'missing_comment', array('class'=>'span10', 'rows'=>5)) ?>
+        <?php echo $form->textArea($model, 'missing_comment', array('class'=>'span15', 'rows'=>7)) ?>
         <?php echo $form->error($model, 'missing_comment') ?>
 
         <br><br>

@@ -26,47 +26,13 @@
 
                 <div class='span3 offset1'>
                         <?php echo $form->labelEx($model, 'school_start') ?>
-                        <?php
-                        $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                                'model'=>$model,
-                                'attribute'=>'school_start',
-                                'options'=>array(
-                                        'changeYear'=>true,
-                                        'changeMonth'=>true,
-                                        'dateFormat'=>'dd.mm.yy',
-                                        'showAnim'=>'fold',
-                                        'yearRange'=>'1980:2030',
-                                        'firstDay'=>1,
-                                ),
-                                'htmlOptions'=>array(
-                                        'maxlength'=>20,
-                                        'class'=>'span2',
-                                ),
-                        )); 
-                        ?>
+                        <?php echo $form->dropDownList($model, 'school_start', Education::yearsForSelect(), array('class'=>'span2')) ?>
                         <?php echo $form->error($model, 'school_start') ?>
                 </div>
 
                 <div class='span3'>
                         <?php echo $form->labelEx($model, 'school_end') ?>
-                        <?php
-                        $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                                'model'=>$model,
-                                'attribute'=>'school_end',
-                                'options'=>array(
-                                        'changeYear'=>true,
-                                        'changeMonth'=>true,
-                                        'dateFormat'=>'dd.mm.yy',
-                                        'showAnim'=>'fold',
-                                        'yearRange'=>'1980:2030',
-                                        'firstDay'=>1,
-                                ),
-                                'htmlOptions'=>array(
-                                        'maxlength'=>20,
-                                        'class'=>'span2',
-                                ),
-                        )); 
-                        ?>
+                        <?php echo $form->dropDownList($model, 'school_end', Education::yearsForSelect(), array('class'=>'span2')) ?>
                         <?php echo $form->error($model, 'school_end') ?>
                 </div>
         </div>
@@ -95,49 +61,21 @@
         </div>
 
         <div class='row'>
+                <div class='span11'>
+                        <?php echo $form->labelEx($model, 'university_address') ?>
+                        <?php echo $form->textField($model, 'university_address', array('class'=>'span10')) ?>
+                        <?php echo $form->error($model, 'university_address') ?>
+                </div>
+
                 <div class='span2'>
                         <?php echo $form->label($model, 'university_start') ?>
-                        <?php
-                        $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                                'model'=>$model,
-                                'attribute'=>'university_start',
-                                'options'=>array(
-                                        'changeYear'=>true,
-                                        'changeMonth'=>true,
-                                        'dateFormat'=>'dd.mm.yy',
-                                        'showAnim'=>'fold',
-                                        'yearRange'=>'1980:2030',
-                                        'firstDay'=>1,
-                                ),
-                                'htmlOptions'=>array(
-                                        'maxlength'=>20,
-                                        'class'=>'span2',
-                                ),
-                        )); 
-                        ?>
+                        <?php echo $form->dropDownList($model, 'university_start', Education::yearsForSelect(), array('class'=>'span2')) ?>
                         <?php echo $form->error($model, 'university_start') ?>
                 </div>
 
                 <div class='span3 offset1'>
                         <?php echo $form->label($model, 'university_end') ?>
-                        <?php
-                        $this->widget('zii.widgets.jui.CJuiDatePicker',array(
-                                'model'=>$model,
-                                'attribute'=>'university_end',
-                                'options'=>array(
-                                        'changeYear'=>true,
-                                        'changeMonth'=>true,
-                                        'dateFormat'=>'dd.mm.yy',
-                                        'showAnim'=>'fold',
-                                        'yearRange'=>'1980:2030',
-                                        'firstDay'=>1,
-                                ),
-                                'htmlOptions'=>array(
-                                        'maxlength'=>20,
-                                        'class'=>'span2',
-                                ),
-                        )); 
-                        ?>
+                        <?php echo $form->dropDownList($model, 'university_end', Education::yearsForSelect(), array('class'=>'span2')) ?>
                         <?php echo $form->error($model, 'university_end') ?>
                 </div>
         </div>

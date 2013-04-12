@@ -27,6 +27,18 @@
                                                 'name'=>'missing_date'
                                         ),
                                         array(
+                                                'header'=>'Комм.',
+                                                'value'=>'$data->missing_comment ? CHtml::image(
+                                                        Yii::app()->baseUrl."/css/images/search.png", null, 
+                                                        array("title"=>$data->missing_comment, "class"=>"comment_lupa")
+                                                ) : ""',
+                                                'type'=>'raw',
+                                                'htmlOptions'=>array(
+                                                        'width'=>'25',
+                                                        'class'=>'centered'
+                                                ),
+                                        ),
+                                        array(
                                                 'class'=>'CButtonColumn',
                                                 'template'=>'{update}',
                                                 'updateButtonUrl'=>'Yii::app()->createUrl("/progress/editMissing", array("id" => '.$student->id.', "missing_id" => $data->id))',

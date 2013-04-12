@@ -32,6 +32,7 @@
                 'university_name',
                 'university_speciality',
                 'university_title',
+                'university_address',
                 'university_start',
                 'university_end',
 	),

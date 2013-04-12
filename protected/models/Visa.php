@@ -28,6 +28,8 @@ class Visa extends CActiveRecord
 			array('student_id, send_city', 'numerical', 'integerOnly'=>true),
 			array('send_date', 'length', 'max'=>20),
 
+                        array('comments', 'safe'),
+
 			array('id, student_id, send_city, send_date', 'safe', 'on'=>'search'),
 		);
 	}
@@ -41,10 +43,11 @@ class Visa extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id'         => 'ID',
 			'student_id' => 'Student',
-			'send_city' => 'Город подачи',
-			'send_date' => 'Дата подачи',
+			'send_city'  => 'Город подачи',
+			'send_date'  => 'Дата подачи',
+			'comments'   => 'Комментарий',
 		);
 	}
 
