@@ -149,9 +149,41 @@ class AdminkaController extends Controller
                 }
 
                 $model->ready = ($model->ready == 1) ? 0:1;
+                $model->ready_date = date('d.m.Y H:i:s');
 
                 $model->save(false);
 
                 $this->redirect(array('/student/adapt','id'=>$model->student_id));
+        }
+
+        /**
+         * Добавление/редактирование комментария для элемента адаптационной программы - для student/adapt/3
+         * 
+         * @param int $file_id 
+         * @param int $student_id
+         * @return void
+         */
+        public function actionAdaptEditComment($item_id, $student_id)
+        {
+                $model = StudentAdapt::model()->findByAttributes(array('item_id'=>$item_id, 'student_id'=>$student_id));
+
+                if (! $model)
+                {
+                        $model = new StudentAdapt;
+                        $model->student_id = $student_id;
+                        $model->item_id = $item_id;
+                }
+
+                if (isset($_POST['StudentAdapt'])) 
+                {
+                        $model->comment = $_POST['StudentAdapt']['comment'];
+                        $model->save(false);
+                        $this->redirect(array('/student/adapt','id'=>$model->student_id));
+                }
+
+                $this->render('/student/tabs/adaptEditComment', array(
+                        'model'=>$model,
+                ));
+
         }
 }

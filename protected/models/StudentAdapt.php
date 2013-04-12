@@ -27,6 +27,8 @@ class StudentAdapt extends CActiveRecord
 			array('student_id, item_id, ready', 'required'),
 			array('student_id, item_id, ready', 'numerical', 'integerOnly'=>true),
 
+                        array('comment, file', 'safe'),
+
 			array('id, student_id, item_id, ready', 'safe', 'on'=>'search'),
 		);
 	}
@@ -37,13 +39,16 @@ class StudentAdapt extends CActiveRecord
 		);
 	}
 
+
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'id'         => 'ID',
 			'student_id' => 'Student',
-			'item_id' => 'Item',
-			'ready' => 'Ready',
+			'item_id'    => 'Item',
+			'comment'    => 'Комментарий',
+			'file'       => 'Файл',
+			'ready'      => 'Ready',
 		);
 	}
 
@@ -68,10 +73,49 @@ class StudentAdapt extends CActiveRecord
 	}
 
 
+        /**
+         * Показывает статус для элемента адаптационной программы у этого студента 
+         * 
+         * @param int $student_id 
+         * @param int $item_id 
+         * @return boolean
+         */
         public static function isItemReady($student_id, $item_id)
         {
                 $model = self::model()->findByAttributes(array('student_id'=>$student_id, 'item_id'=>$item_id));
                 return ($model AND $model->ready) ? true:false;
+        }
+
+        /**
+         * Показывает время готовности для элемента адаптационной программы у этого студента 
+         * 
+         * @param int $student_id 
+         * @param int $item_id 
+         * @return string
+         */
+        public static function getItemReadyDate($student_id, $item_id)
+        {
+                $model = self::model()->findByAttributes(array('student_id'=>$student_id, 'item_id'=>$item_id));
+                echo ($model AND $model->ready_date) ? $model->ready_date : '';
+        }
+
+        /**
+         * Показывает комментарий для элемента адаптационной программы у этого студента 
+         * 
+         * @param int $student_id 
+         * @param int $item_id 
+         * @return string
+         */
+        public static function getItemComment($student_id, $item_id)
+        {
+                $model = self::model()->findByAttributes(array('student_id'=>$student_id, 'item_id'=>$item_id));
+
+                if ($model AND $model->comment) 
+                {
+                        echo CHtml::image(Yii::app()->baseUrl.'/css/images/search.png', null, array(
+                                'class'=>'comment_lupa', 'title'=>nl2br($model->comment),
+                        ));
+                }
         }
 
 

@@ -46,22 +46,23 @@ class Student extends CActiveRecord
 	public function relations()
 	{
 		return array(
-                        'files'=>array(self::MANY_MANY, 'Files', 'obr_student_files(student_id, file_id)'),
-                        'post'=>array(self::HAS_MANY, 'Post', 'student_id'),
-                        'tests'=>array(self::HAS_MANY, 'Tests', 'student_id'),
-                        'missing_subjects'=>array(self::HAS_MANY, 'MissingSubjects', 'student_id'),
+                        'files'            => array(self::MANY_MANY, 'Files', 'obr_student_files(student_id, file_id)'),
+                        'post'             => array(self::HAS_MANY, 'Post', 'student_id'),
+                        'adapt_info'       => array(self::HAS_MANY, 'StudentAdapt', 'student_id'),
+                        'tests'            => array(self::HAS_MANY, 'Tests', 'student_id'),
+                        'missing_subjects' => array(self::HAS_MANY, 'MissingSubjects', 'student_id'),
 
-                        'arrival'=>array(self::HAS_ONE, 'Arrival', 'student_id'),
-                        'visa'=>array(self::HAS_ONE, 'Visa', 'student_id'),
-                        'education'=>array(self::HAS_ONE, 'Education', 'student_id'),
+                        'arrival'   => array(self::HAS_ONE, 'Arrival', 'student_id'),
+                        'visa'      => array(self::HAS_ONE, 'Visa', 'student_id'),
+                        'education' => array(self::HAS_ONE, 'Education', 'student_id'),
 
-                        'adapt_paket'=>array(self::BELONGS_TO, 'AdaptPakets', 'adapt_paket_id'),
-                        'manager'=>array(self::BELONGS_TO, 'Users', 'manager_id'),
-                        'referent'=>array(self::BELONGS_TO, 'Users', 'referent_id'),
-                        'birth_country'=>array(self::BELONGS_TO, 'CountryCode', 'birth_country'),
-                        'birth_city'=>array(self::BELONGS_TO, 'CityCode', 'birth_city'),
-                        'courses_ku'=>array(self::BELONGS_TO, 'CoursesKu', 'courses_ku_id'),
-                        'dorm'=>array(self::BELONGS_TO, 'Dorm', 'dorm_id'),
+                        'adapt_paket'   => array(self::BELONGS_TO, 'AdaptPakets', 'adapt_paket_id'),
+                        'manager'       => array(self::BELONGS_TO, 'Users', 'manager_id'),
+                        'referent'      => array(self::BELONGS_TO, 'Users', 'referent_id'),
+                        'birth_country' => array(self::BELONGS_TO, 'CountryCode', 'birth_country'),
+                        'birth_city'    => array(self::BELONGS_TO, 'CityCode', 'birth_city'),
+                        'courses_ku'    => array(self::BELONGS_TO, 'CoursesKu', 'courses_ku_id'),
+                        'dorm'          => array(self::BELONGS_TO, 'Dorm', 'dorm_id'),
 		);
 	}
 
@@ -233,7 +234,7 @@ class Student extends CActiveRecord
          * @param boolean $html
          * @return array
          */
-        public function getStatusArray($html = true)
+        public static function getStatusArray($html = true)
         {
                 $array = array(
                         1 => "Потенциальный",
