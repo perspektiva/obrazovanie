@@ -48,7 +48,6 @@ class Student extends CActiveRecord
 		return array(
                         'files'            => array(self::MANY_MANY, 'Files', 'obr_student_files(student_id, file_id)'),
                         'post'             => array(self::HAS_MANY, 'Post', 'student_id'),
-                        'adapt_info'       => array(self::HAS_MANY, 'StudentAdapt', 'student_id'),
                         'tests'            => array(self::HAS_MANY, 'Tests', 'student_id'),
                         'missing_subjects' => array(self::HAS_MANY, 'MissingSubjects', 'student_id'),
 

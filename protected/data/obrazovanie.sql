@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2013 at 01:30 PM
+-- Generation Time: Apr 12, 2013 at 03:45 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.3.10-1ubuntu3.5
 
@@ -373,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `obr_missing_subjects` (
 
 INSERT INTO `obr_missing_subjects` (`id`, `student_id`, `missing_subject`, `missing_date`, `missing_comment`) VALUES
 (1, 2, 'asdsadsa', '06.03.2013', ''),
-(2, 2, 'asdsadsa', '06.03.2013', 'also supported specifically for list box:\r\nencode: boolean, specifies whether to encode the values. Defaults to true.\r\nprompt: string, specifies the prompt text shown as the first list option. Its value is empty. Note, the prompt text will NOT be HTML-encoded.\r\nempty: string, specifies the text corresponding to empty selection. Its value is empty. The ''empty'' option can also be an array of value-label pairs. Each pair will be used to render a list option at the beginning. Note, the text label will NOT be HTML-encoded.\r\noptions: array, specifies additional attributes for each OPTION tag. The array keys must be the option values, and the array values are the extra OPTION tag attributes in the name-value pairs. For example'),
+(2, 2, 'asdsadsa', '06.03.2013', 'prompt: string, specifies the prompt text shown as the first list option. Its value is empty. Note, the prompt text will NOT be HTML-encoded.\r\nempty: string, specifies the text corresponding to empty selection. Its value is empty. The ''empty'' option can also be an array of value-label pairs. Each pair will be used to render a list option at the beginning. Note, the text label will NOT be HTML-encoded.\r\noptions: array, specifies additional attributes for each OPTION tag. The array keys must be the option values, and the array values are the extra OPTION tag attributes in the name-value pairs. For examplealso supported specifically for list box:\r\nencode: boolean, specifies whether to encode the values. Defaults to true.\r\nprompt: string, specifies the prompt text shown as the first list option. Its value is empty. Note, the prompt text will NOT be HTML-encoded.\r\nempty: string, specifies the text corresponding to empty selection. Its value is empty. The ''empty'' option can also be an array of value-label pairs. Each pair will be used to render a list option at the beginning. Note, the text label will NOT be HTML-encoded.\r\noptions: array, specifies additional attributes for each OPTION tag. The array keys must be the option values, and the array values are the extra OPTION tag attributes in the name-value pairs. For example'),
 (3, 2, 'asdsadsa', '06.03.2013', ''),
 (4, 2, 'ggggwww222222', '06.03.2013', ''),
 (5, 2, 'aaaaaaaa', '26.11.2010', ''),
@@ -487,21 +487,25 @@ CREATE TABLE IF NOT EXISTS `obr_student_adapt` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `ready_date` varchar(20) NOT NULL,
   `ready` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `student_id` (`student_id`),
+  KEY `item_id` (`item_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `obr_student_adapt`
 --
 
-INSERT INTO `obr_student_adapt` (`id`, `student_id`, `item_id`, `ready`) VALUES
-(1, 2, 1, 0),
-(2, 2, 2, 1),
-(3, 4, 1, 0),
-(4, 1, 3, 1),
-(5, 4, 4, 0),
-(6, 4, 5, 0);
+INSERT INTO `obr_student_adapt` (`id`, `student_id`, `item_id`, `comment`, `ready_date`, `ready`) VALUES
+(1, 2, 1, 'gf aksjdasjkd\r\n\r\nfghgfhfg\r\n\r\nsdf\r\nsdf\r\nsdf', '12.04.2013 15:27:59', 1),
+(2, 2, 2, '', '12.04.2013 15:14:51', 0),
+(3, 4, 1, '', '', 0),
+(4, 1, 3, '', '', 1),
+(5, 4, 4, '', '', 0),
+(6, 4, 5, '', '', 0);
 
 -- --------------------------------------------------------
 
