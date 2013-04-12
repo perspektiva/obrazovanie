@@ -12,7 +12,7 @@
                         <th width='30px'>№</th>
                         <th>Название</th>
                         <th width='50px' title='Комментарий'>Комм.</th>
-                        <th width='120px' title='Дата готовности'>Дата</th>
+                        <th width='140px' title='Дата готовности'>Дата</th>
                         <th width='120px'>Готовность</th>
                 </tr>
         </thead>
